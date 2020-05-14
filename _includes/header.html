@@ -15,10 +15,9 @@
       </a>
 
       <div class="trigger">
-        {% assign tabbed = site.pages | where_exp:"p","p.tab" | sort:"tab"%}
-        {% for p in tabbed %}
-            <a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{{ p.tab }}</a>
-        {% endfor %}
+        <script>
+            document.write(window.hyde_tabs);
+        </script>
       </div>
     </nav>
 

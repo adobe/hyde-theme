@@ -1,6 +1,6 @@
 <script>
     var page_index = window.hyde_index["{{ page.dir }}"];
-    document.write(page_index.directory);
-    document.write(page_index.sourcefile);
-    document.write(page_index.library);
+    if ('directory' in page_index) document.write(page_index.directory);
+    if ('sourcefile' in page_index) document.write(page_index.sourcefile);
+    if ('library' in page_index) document.write(page_index.library);
 </script>

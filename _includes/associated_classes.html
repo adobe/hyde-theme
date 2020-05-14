@@ -1,4 +1,4 @@
 <script>
     var page_index = window.hyde_index["{{ page.dir }}"];
-    document.write(page_index.class);
+    if ('class' in page_index) document.write(page_index.class);
 </script>
