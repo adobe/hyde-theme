@@ -2,13 +2,13 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-adobe-hyde"
-  spec.version       = "0.2.0"
+  spec.version       = "0.2.2"
   spec.authors       = ["Sean Parent"]
   spec.email         = ["sparent@adobe.com"]
 
   spec.summary       = "Jekyll theme to use with Hyde C++ documentation system."
   spec.homepage      = "https://github.com/adobe/hyde-theme"
-  spec.license       = "MIT"
+  spec.license       = "Apache 2.0"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README)!i) }
 

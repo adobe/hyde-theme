@@ -58,20 +58,25 @@ The hex number is the docker image container ID and may be different. Going forw
 
 ## Building the gem
 
-Update the version number in the `.gemspec` file
+Update the version number in the `.gemspec` file.
+
 ```bash
 cd /mnt/host
 bundle update
 gem build jekyll-theme-adobe-hyde
 ```
 
-
-
 To build or rebuild the complete documentation site locally execute the following from the docker prompt:
 
 ```
 cd /mnt/host
 ./tools/start.sh
+```
+
+To push the theme:
+
+```bash
+gem push jekyll-theme-adobe-hyde
 ```
 
 ## Run a local server for the site

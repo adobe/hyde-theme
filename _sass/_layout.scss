@@ -37,9 +37,12 @@
     bottom: 0;
     */
 
-    background-image: $header-image;
-    background-repeat: no-repeat;
-    background-size: contain;
+
+    @if variable-exists(header-image) {
+        background-image: $header-image;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 }
 
 .site-nav {
