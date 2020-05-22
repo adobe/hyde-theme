@@ -31,6 +31,13 @@ Or install it yourself as:
 
 ## Usage
 
+To add a header image in the `_config.yml` add
+
+```yaml
+adobe_hyde:
+    header_image: <relative url of image>
+```
+
 TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
 
 ## Contributing
@@ -49,4 +56,3 @@ To add a custom directory to your theme-gem, please edit the regexp in `jekyll-t
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
