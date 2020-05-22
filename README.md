@@ -1,11 +1,10 @@
 # jekyll-theme-adobe-hyde
 
-Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes`, your sass files in `_sass` and any other assets in `assets`.
+This is a [Jekyll theme](https://jekyllrb.com/docs/themes/) for use with the [Hyde C++ documentation tool](https://github.com/adobe/hyde). The theme works directly with [GitHub Pages](https://pages.github.com/).
 
-To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
+This theme is based on [the slate theme](jekyll-theme-slate) and incorporates a number of templates we've developed for various [Hyde based sites](http://stlab.cc/libraries/stlab2Fcopy_on_write.hpp/copy_on_write3CT3E/).
 
-TODO: Delete this and the text above, and describe your gem
-
+The inspiration for the layout comes from [cppreference](https://en.cppreference.com/w/cpp/string/basic_string). Please help us improve the templates by [contribute](#contributing)!
 
 ## Installation
 
@@ -38,13 +37,15 @@ adobe_hyde:
     header_image: <relative url of image>
 ```
 
-TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
+_Write usage instructions here. Describe your available layouts, includes, sass and/or assets._
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hello. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/adobe/hyde-theme. This project is intended to be a safe, welcoming space for collaboration. Please see the [code of conduct](./CODE_OF_CONDUCT.md) and [contributing](./.github/CONTRIBUTING.md) documents.
 
 ## Development
+
+_These instructions need to be updated. We don't currently have test content in the repo._
 
 To set up your environment to develop this theme, run `bundle install`.
 
@@ -55,4 +56,4 @@ To add a custom directory to your theme-gem, please edit the regexp in `jekyll-t
 
 ## License
 
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The theme is available as open source under the terms of the [Apache License 2.0](./LICENSE.txt).
