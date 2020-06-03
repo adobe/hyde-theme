@@ -3,9 +3,10 @@
 ---
 @charset "utf-8";
 
-// Variables are split into two buckets: the independent and dependent definitions. We define the
-// independent ones first, then allow the end-user to customize them. Then we define the dependent
-// ones.
+// Theme variables are split into two buckets: primaries and dependents. First we define the
+// primary variables, then allow the end-user to override them by defining their own override
+// file set. Finally, we derive the dependent variables from the primaries, taking into account
+// any user overrides that have been made.
 
 $background-color: white;
 $base-font-family: "Source Serif Pro",serif;
