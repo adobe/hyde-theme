@@ -4,7 +4,7 @@ This is a [Jekyll theme](https://jekyllrb.com/docs/themes/) for use with the [Hy
 
 This theme is based on [the slate theme](jekyll-theme-slate) and incorporates a number of templates we've developed for various [Hyde based sites](http://stlab.cc/libraries/stlab2Fcopy_on_write.hpp/copy_on_write3CT3E/).
 
-The inspiration for the layout comes from [cppreference](https://en.cppreference.com/w/cpp/string/basic_string). Please help us improve the templates by [contribute](#contributing)!
+The inspiration for the layout comes from [cppreference](https://en.cppreference.com/w/cpp/string/basic_string). Please help us improve the templates by [contributing](#contributing)!
 
 ## Installation
 
@@ -37,7 +37,15 @@ adobe_hyde:
     header_image: <relative url of image>
 ```
 
-_Write usage instructions here. Describe your available layouts, includes, sass and/or assets._
+### Customizing The Theme
+
+The theme includes variable overrides that won't overwrite theme files. This lets you customize some of the layout and coloring parameters of the theme, and still keep up with the latest theme changes easily. To start, copy these three files from the theme to the same location in your local Jekyll site:
+
+  - `_sass/_overrides.scss`
+  - `_sass/_overrides-light.scss`
+  - `_sass/_overrides-dark.scss`
+
+You can customize theme variables within these files. See an example of this in the [`stlab.cc` repository](https://github.com/stlab/stlab.github.io/tree/master/_sass).
 
 ## Contributing
 
