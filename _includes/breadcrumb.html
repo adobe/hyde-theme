@@ -18,15 +18,16 @@
     <li><a href="{{ site.baseurl }}/"><i class="fa fa-home"></i></a></li>
     {% for crumb in crumbs %}
       {% if crumb == "/" %} {% continue %} {% endif %}
-      <li> | <script>
-            var crumb_index = window.hyde_title_index;
-            if ('{{ crumb }}' in crumb_index) {
-                document.write("<a href='{{crumb | prepend: site.baseurl}}'>" + crumb_index['{{ crumb }}'] + "</a>");
-            } else {
-                document.write("?????");
-            }
-        </script>
-      </li>
+      <script>
+          var crumb_index = window.hyde_title_index;
+          if ('{{ crumb }}' in crumb_index) {
+              document.write("<li> | ");
+              document.write("<a href='{{crumb | prepend: site.baseurl}}'>" + crumb_index['{{ crumb }}'] + "</a>");
+              document.write("</li>");
+          } else {
+              // document.write("?????");
+          }
+      </script>
     {% endfor%}
   </ol>
 </div>
