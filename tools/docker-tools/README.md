@@ -10,7 +10,7 @@ If you don't already have docker installed, [install Docker](https://docs.docker
 To build the docker image, first update the VERSION variable below (please use semantic versioning). Add a [release note](#release-notes).
 
 ```
-VERSION="1.0.0"
+VERSION="1.0.1"
 echo $VERSION > ./tools/docker-tools/VERSION
 
 # build the base image, no-cache is used so the latest tools are installed
@@ -29,13 +29,6 @@ exit
 # build the final image
 docker build --file ./tools/docker-tools/Dockerfile --target full --tag hyde-theme-tools .
 
-```
-
-
-```
-docker run --mount type=bind,source="$(pwd)",target=/mnt/host \
-    --tty --interactive --publish 3000-3001:3000-3001 \
-    hyde-theme-tools bash
 ```
 
 ## Running the Docker image
@@ -73,10 +66,10 @@ cd /mnt/host
 ./tools/start.sh
 ```
 
-To push the theme:
+To push the theme (replace <version> with .gem version).
 
 ```bash
-gem push jekyll-theme-adobe-hyde
+gem push jekyll-theme-adobe-hyde-1.0.0.gem
 ```
 
 ## Run a local server for the site
@@ -93,3 +86,4 @@ To view the site, open a browser to `http://localhost:3000`. The site will auto 
 ### Release Notes
 
 - 1.0.0 - Initial release for jekyll
+- 1.0.1 - Update to bring gem to 1.0
