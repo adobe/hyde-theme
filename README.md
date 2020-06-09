@@ -6,7 +6,35 @@ This theme is based on [the slate theme](jekyll-theme-slate) and incorporates a 
 
 The inspiration for the layout comes from [cppreference](https://en.cppreference.com/w/cpp/string/basic_string). Please help us improve the templates by [contributing](#contributing)!
 
+###### Table Of Contents
+
+<!-- TOC depthFrom:2 depthTo:5 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Installation](#installation)
+	- [GitHub Pages](#github-pages)
+	- [Using Ruby Gems (does not work with GitHub pages)](#using-ruby-gems-does-not-work-with-github-pages)
+- [Usage](#usage)
+	- [Adding a Header Image](#adding-a-header-image)
+	- [Customizing the Theme](#customizing-the-theme)
+- [Contributing](#contributing)
+- [Development](#development)
+- [License](#license)
+
+<!-- /TOC -->
+
 ## Installation
+
+### GitHub Pages
+
+If using GitHub Pages or the [jekyll-remote-theme plugin](https://github.com/benbalter/jekyll-remote-theme), specify the theme as a remote theme in your `_config.yml` file:
+
+```
+remote_theme: adobe/hyde-theme@v1.0.0
+```
+
+It is strongly recommended that you use a version tag to avoid having an updated version of the theme break you site.
+
+### Using Ruby Gems (does not work with GitHub pages)
 
 Add this line to your Jekyll site's `Gemfile`:
 
@@ -30,6 +58,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Adding a Header Image
+
 To add a header image in the `_config.yml` add
 
 ```yaml
@@ -37,7 +67,7 @@ adobe_hyde:
     header_image: <relative url of image>
 ```
 
-### Customizing The Theme
+### Customizing the Theme
 
 The theme includes variable overrides that won't overwrite theme files. This lets you customize some of the layout and coloring parameters of the theme, and still keep up with the latest theme changes easily. To start, copy these three files from the theme to the same location in your local Jekyll site:
 
@@ -47,13 +77,15 @@ The theme includes variable overrides that won't overwrite theme files. This let
 
 You can customize theme variables within these files. See an example of this in the [`stlab.cc` repository](https://github.com/stlab/stlab.github.io/tree/master/_sass).
 
+_TODO: More documentation is needed for features such as `{% include figure.md %}`._
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/adobe/hyde-theme. This project is intended to be a safe, welcoming space for collaboration. Please see the [code of conduct](./CODE_OF_CONDUCT.md) and [contributing](./.github/CONTRIBUTING.md) documents.
 
 ## Development
 
-_These instructions need to be updated. We don't currently have test content in the repo._
+_TODO: These instructions need to be updated. We don't currently have test content in the repo._
 
 To set up your environment to develop this theme, run `bundle install`.
 
