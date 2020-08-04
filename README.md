@@ -32,7 +32,7 @@ If using GitHub Pages or the [jekyll-remote-theme plugin](https://github.com/ben
 remote_theme: adobe/hyde-theme@v1.0.0
 ```
 
-It is strongly recommended that you use a version tag to avoid having an updated version of the theme break you site.
+It is strongly recommended that you use a version tag to avoid having an updated version of the theme break your site.
 
 ### Using Ruby Gems (does not work with GitHub pages)
 
