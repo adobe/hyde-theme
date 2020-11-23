@@ -1,4 +1,5 @@
 ---
+layout: null
 ---
 /*
 Copyright 2020 Adobe. All rights reserved.
@@ -27,7 +28,7 @@ window.hyde_index = {
                                         {% for p in directories %}
                             <tr>
                                 <td class='name'>
-                                  <div><a href="{{p.url}}"><code>{{ p.title | escape }}</code></a></div>
+                                  <div><a href="{{p.url | relative_url}}"><code>{{ p.title | escape }}</code></a></div>
                                 </td>
                                 <td class='brief'>
                                     {%- if p.brief -%}
