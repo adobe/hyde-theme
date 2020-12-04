@@ -12,21 +12,21 @@ layout: default
     {{ content }}
   </div>
 
-    {% if page.comments %}
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            {% if site.safe == false %}var disqus_developer = 1;{% endif %}
-            var disqus_shortname = '{{ site.comments.disqus.short_name }}'; // required: replace example with your forum shortname
+  {% if page.author_bio %}
+  <p class="post-meta"><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author_bio }}</span></span></p>
+  {% endif %}
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-    {% endif %}
+  {% if page.comments and site.utterances.repo %}
+    <script src="https://utteranc.es/client.js"
+            repo="{{site.utterances.repo}}"
+            issue-term="{{site.utterances.issue-term | default: 'pathname'}}"
+          {% if site.utterances.label %}
+            label="{{site.utterances.label}}"
+          {% endif %}
+            theme="{{site.utterances.theme | default: 'github-light'}}"
+            crossorigin="{{site.utterances.crossorigin | default: 'anonymous'}}"
+            async>
+    </script>
+  {% endif %}
 
 </article>

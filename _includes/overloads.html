@@ -18,7 +18,11 @@
       {% if entity[1].annotation %}
         <span class='annotation'>({{entity[1].annotation | join: ", "}})</span>
       {% endif %}
-      {{entity[1].description}}
+      {% if entity[1].description == "__OPTIONAL__" %}
+        <i>no details given</i>
+      {% else %}
+        {{entity[1].description}}
+      {% endif %}
       {% if entity[1].arguments or entity[1].return %}
         <br/>
       {% endif %}
