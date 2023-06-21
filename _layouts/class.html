@@ -11,11 +11,11 @@ layout: default
 
         <br/>
 
-        {{page.brief | markdownify}}
+        {{page.hyde.brief | markdownify}}
 
-        {% if page.declaration.first != empty %}
+        {% if page.hyde.declaration.first != empty %}
            <table class='declaration-table'>
-            {% for item in page.declaration %}
+            {% for item in page.hyde.declaration %}
             <tr>
               <td>
                 {% highlight cpp %}{{ item }}{% endhighlight %}
@@ -24,10 +24,10 @@ layout: default
            {% endfor %}
            </table>
         {% else %}
-            {% highlight c++ %}{{ page.declaration }}{% endhighlight %}
+            {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
         {% endif %}
 
-        {{page.description | markdownify}}
+        {{page.hyde.description | markdownify}}
 
         {% include associated_enumerations.html %}
 
@@ -43,7 +43,7 @@ layout: default
 
         {{ content }}
 
-        {% include external_examples.html name=page.example header="Example" %}
+        {% include external_examples.html name=page.hyde.example header="Example" %}
     </article>
 </div>
 

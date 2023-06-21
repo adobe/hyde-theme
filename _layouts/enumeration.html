@@ -7,20 +7,20 @@ layout: default
   </header>
 
   <article class="post-content">
-    {{page.description}}
+    {{page.hyde.description}}
 
     {% include defined_in_header.html %}
 
-    {% highlight c++ %}{{ page.declaration }}{% endhighlight %}
+    {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
 
-    {{page.brief | markdownify}}
+    {{page.hyde.brief | markdownify}}
 
-    {{page.description | markdownify}}
+    {{page.hyde.description | markdownify}}
 
     <h2>Values</h2>
 
     <table class='definition-table'>
-      {% for value in page.values %}
+      {% for value in page.hyde.values %}
         <tr>
           <td class='decl'>{{ value.name }}</td>
           <td class='defn'>{{ value.description | markdownify }}</td>
@@ -30,6 +30,6 @@ layout: default
 
     {{ content }}
 
-    {% include external_examples.html name=page.example header="Example" %}
+    {% include external_examples.html name=page.hyde.example header="Example" %}
   </article>
 </div>

@@ -19,7 +19,13 @@
 
             store(name);
 
-            switcher.textContent = "<" + next + ">";
+            if (next === "dark") {
+                // https://emojipedia.org/waning-gibbous-moon/
+                switcher.innerHTML = "&#x1F316;";
+            } else {
+                // https://emojipedia.org/waning-crescent-moon/
+                switcher.innerHTML = "&#x1F318;";
+            }
         }
 
         function set(url){

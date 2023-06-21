@@ -1,4 +1,4 @@
-{% if page.fields %}
+{% if page.hyde.fields %}
   <h3>Member Fields</h3>
   <table class='definition-table'>
     <tr class='headers'>
@@ -6,7 +6,7 @@
       <th>Type</th>
       <th>Notes</th>
     </tr>
-    {% for type in page.fields %}
+    {% for type in page.hyde.fields %}
       <tr>
         <td class='field'>{{ type[0] }}</td>
         <td class='decl'>{{ type[1].type | escape }}</td>

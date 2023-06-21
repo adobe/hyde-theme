@@ -9,15 +9,13 @@ layout: default
   <article class="post-content">
     {% include defined_in_header.html %}
 
-    <br/>
-
-    {{page.brief | markdownify}}
+    {% include page_brief.html %}
 
     <br/>
 
     {% include overloads.html %}
 
-    {% for entity in page.entities %}
+    {% for entity in page.hyde.entities %}
       {% case entity.kind %}
         {% when 'parameters'%}
           <h3>Parameters</h3>
@@ -51,6 +49,6 @@ layout: default
 
     {{ content }}
 
-    {% include external_examples.html name=page.example header="Example" %}
+    {% include external_examples.html name=page.hyde.example header="Example" %}
   </article>
 </div>

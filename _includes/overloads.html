@@ -1,6 +1,6 @@
-{% if page.overloads %}
+{% if page.hyde.overloads %}
   <table class='declaration-table'>
-  {% for entity in page.overloads %}
+  {% for entity in page.hyde.overloads %}
       <tr>
         <td>
           {% highlight c++ %}{{ entity[1].signature_with_names }}{% endhighlight %}
@@ -10,43 +10,61 @@
   {% endfor %}
   </table>
 
-  {{ page.description | markdownify }}
+  {{ page.hyde.description | markdownify }}
 
   <ol>
-  {% for entity in page.overloads %}
+  {% for entity in page.hyde.overloads %}
     <li>
       {% if entity[1].annotation %}
         <span class='annotation'>({{entity[1].annotation | join: ", "}})</span>
       {% endif %}
-      {% if entity[1].description == "__OPTIONAL__" %}
-        <i>no details given</i>
-      {% else %}
-        {{entity[1].description}}
+
+      {% if entity[1].inline.description %}
+        {{entity[1].inline.description | join: "<br/>" | escape }}
       {% endif %}
-      {% if entity[1].arguments or entity[1].return %}
-        <br/>
+
+      {% if entity[1].description and
+            (entity[1].description != "__MISSING__") and
+            (entity[1].description != "__OPTIONAL__") and
+            (entity[1].description != "__DEFERRED__") %}
+        {{entity[1].description | escape}}
       {% endif %}
+
       {% if entity[1].arguments %}
-        <b>Parameters:</b>
-        <ul>
+        <h4>Parameters</h4>
+        <table class='declaration-table'>
           {% for arg in entity[1].arguments %}
-            <li>
+            <tr>
+                <td>
               <code>{{arg.type | escape}}</code>
+
               {% if (arg.name != "") and (arg.unnamed == false) %}
                 <code>{{arg.name | escape}}</code>
               {% else %}
                 <i>unnamed</i>
               {% endif %}
+                </td>
+                <td>
               {% if arg.description and (arg.description != "__OPTIONAL__") %}
-                : {{arg.description | escape}}
+                {{arg.description | escape}}
+              {% else if arg.name and entity[1].inline.arguments[arg.name].description %}
+                {{entity[1].inline.arguments[arg.name].description | escape}}
               {% endif %}
-            </li>
+                </td>
+            </tr>
           {% endfor %}
-        </ul>
+        </table>
       {% endif %}
+
+      
+
       {% if entity[1].return and (entity[1].return != "__OPTIONAL__") %}
-        <b>Returns:</b> {{entity[1].return | escape}}
+        <h4>Returns</h4> {{entity[1].return | escape}}
       {% endif %}
+      {% if entity[1].inline.return %}
+        <h4>Returns</h4> {{entity[1].inline.return | escape}}
+      {% endif %}
+
     </li>
   {% endfor %}
   </ol>
