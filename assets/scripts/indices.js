@@ -46,7 +46,7 @@ window.hyde_index = {
                                         {%- endfor -%}
                         </table>`,
                     {%- when "library" -%}
-                        {%- assign sub_libs = layout.items | group_by: "library-type" | sort: "name" -%}
+                        {%- assign sub_libs = layout.items | group_by: "hyde.library-type" | sort: "name" -%}
                         {%- for sub_lib in sub_libs -%}
                             {%- case sub_lib.name -%}
                                 {%- when "sourcefile" -%}
@@ -246,6 +246,20 @@ window.hyde_index = {
         },
     {% endfor %}
 };
+
+{% comment %}
+// Save this for debugging purposes. Leave it commented out so it doesn't fail to parse, etc.
+// window.blarglblargh = {
+//     {% for sibling in siblings %}
+//         {%- assign layouts = sibling.items | group_by: "layout" | sort: "name" -%}
+//         {{ sibling.name | jsonify }}: {
+//             {%- for layout in layouts -%}
+//                 {{layout.name}},
+//             {%- endfor -%}
+//         },
+//     {% endfor %}
+// }
+{% endcomment %}
 
 window.hyde_title_index = {
     {% for p in site.pages %}
