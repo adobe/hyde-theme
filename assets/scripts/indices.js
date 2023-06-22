@@ -247,6 +247,13 @@ window.hyde_index = {
     {% endfor %}
 };
 
+window.hyde_tabs = `
+    {% assign tabbed = site.pages | where_exp:"p", "p.hyde.tab" | sort:"tab" %}
+    {% for p in tabbed %}
+        <a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{{ p.hyde.tab }}</a>
+    {% endfor %}`
+    ;
+
 {% comment %}
 // Save this for debugging purposes. Leave it commented out so it doesn't fail to parse, etc.
 // window.blarglblargh = {
