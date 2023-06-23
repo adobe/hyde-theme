@@ -1,42 +1,54 @@
 {% if page.hyde.overloads %}
+  {% assign overload_count = page.hyde.overloads | size %}
+
   <table class='declaration-table'>
   {% for entity in page.hyde.overloads %}
+    {% assign overload = entity[1] %}
       <tr>
         <td>
-          {% highlight c++ %}{{ entity[1].signature_with_names }}{% endhighlight %}
+          {% highlight c++ %}{{ overload.signature_with_names }}{% endhighlight %}
         </td>
-        <td>({{ forloop.index }})</td>
+        {% if overload_count > 1 %}
+            <td><a href="#overload_{{ forloop.index }}">({{ forloop.index }})</a></td>
+        {% endif %}
       </tr>
   {% endfor %}
   </table>
 
-  {{ page.hyde.description | markdownify }}
+  {% if page.hyde.inline.description %}
+    {{ page.hyde.inline.description | markdownify }}
+  {% endif %}
 
-  <ol>
+  {% if page.hyde.description %}
+    {{ page.hyde.description | markdownify }}
+  {% endif %}
+
   {% for entity in page.hyde.overloads %}
-    <li>
-      {% if entity[1].annotation %}
-        <span class='annotation'>({{entity[1].annotation | join: ", "}})</span>
+    {% assign overload = entity[1] %}
+    {% if overload_count > 1 %}
+      <h4 id="overload_{{ forloop.index }}">({{ forloop.index }}) <code>{{ overload.signature_with_names | escape }}</code></h4>
+    {% endif %}
+      {% if overload.annotation %}
+        <span class='annotation'>({{overload.annotation | join: ", "}})</span>
       {% endif %}
 
-      {% if entity[1].inline.description %}
-        {{entity[1].inline.description | join: "<br/>" | escape }}
+      {% if overload.inline.description %}
+        {{overload.inline.description | join: "<br/>" | markdownify }}
       {% endif %}
 
-      {% if entity[1].description and
-            (entity[1].description != "__MISSING__") and
-            (entity[1].description != "__OPTIONAL__") and
-            (entity[1].description != "__DEFERRED__") %}
-        {{entity[1].description | escape}}
+      {% if overload.description and
+            overload.description != "__INLINED__"  and
+            overload.description != "__OPTIONAL__" %}
+        {{overload.description | markdownify}}
       {% endif %}
 
-      {% if entity[1].arguments %}
-        <h4>Parameters</h4>
+      {% if overload.arguments %}
+        <h5>Parameters</h5>
         <table class='declaration-table'>
-          {% for arg in entity[1].arguments %}
+          {% for arg in overload.arguments %}
             <tr>
                 <td>
-              <code>{{arg.type | escape}}</code>
+              <!--code>{{arg.type | escape}}</code-->
 
               {% if (arg.name != "") and (arg.unnamed == false) %}
                 <code>{{arg.name | escape}}</code>
@@ -46,9 +58,9 @@
                 </td>
                 <td>
               {% if arg.description and (arg.description != "__OPTIONAL__") %}
-                {{arg.description | escape}}
-              {% else if arg.name and entity[1].inline.arguments[arg.name].description %}
-                {{entity[1].inline.arguments[arg.name].description | escape}}
+                {{arg.description | markdownify}}
+              {% else if arg.name and overload.inline.arguments[arg.name].description %}
+                {{overload.inline.arguments[arg.name].description | markdownify}}
               {% endif %}
                 </td>
             </tr>
@@ -56,16 +68,13 @@
         </table>
       {% endif %}
 
-      
 
-      {% if entity[1].return and (entity[1].return != "__OPTIONAL__") %}
-        <h4>Returns</h4> {{entity[1].return | escape}}
+      {% if overload.return and (overload.return != "__OPTIONAL__") %}
+        <h5>Returns</h5> {{overload.return | markdownify}}
       {% endif %}
-      {% if entity[1].inline.return %}
-        <h4>Returns</h4> {{entity[1].inline.return | escape}}
+      {% if overload.inline.return %}
+        <h5>Returns</h5> {{overload.inline.return | markdownify}}
       {% endif %}
 
-    </li>
   {% endfor %}
-  </ol>
 {% endif %}

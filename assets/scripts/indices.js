@@ -178,13 +178,19 @@ window.hyde_index = {
                               <div><a href="{{p.url | relative_url}}">{{ p.title | escape }}</a></div>
                             </td>
                             <td class='defn'>
-                              {%- if p.hyde.brief -%}
-                                {{ p.hyde.brief | markdownify}}
-                              {%- elsif p.hyde.description -%}
-                                {{ p.hyde.description | markdownify}}
-                              {%- else -%}
-                                {{ '_No details given_' | markdownify}}
+                              {%- if p.hyde.inline.brief -%}
+                                {{ p.hyde.inline.brief | markdownify}}
                               {%- endif -%}
+
+                              {%- if p.hyde.brief -%}
+                                {%- if p.hyde.brief == "__OPTIONAL__" or
+                                       p.hyde.brief == "__INLINED__" -%}
+                                  &ZeroWidthSpace;
+                                {%- else -%}
+                                  {{ p.hyde.brief | markdownify}}
+                                {%- endif -%}
+                              {%- endif -%}
+
                               {%- if p.hyde.annotation -%}
                                 <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
                               {%- endif -%}

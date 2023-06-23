@@ -7,14 +7,22 @@
       <th>Notes</th>
     </tr>
     {% for type in page.hyde.fields %}
+      {% assign key = type[0] %}
+      {% assign value = type[1] %}
+
       <tr>
-        <td class='field'>{{ type[0] }}</td>
-        <td class='decl'>{{ type[1].type | escape }}</td>
-        {% if type[1].description or type[1].annotation %}
+        <td class='field'>{{ key }}</td>
+        <td class='decl'>{{ value.type | escape }}</td>
+        {% if value.description or value.inline.description or value.annotation %}
           <td class='defn'>
-            {{ type[1].description | markdownify }}
-            {% if type[1].annotation %}
-              <span class='annotation'>({{ type[1].annotation | join: ", " }})</span>
+            {% if value.description != "__INLINED__" %}
+              {{ value.description | markdownify }}
+            {% endif %}
+
+            {{ value.inline.description | join:"<br/>" | markdownify }}
+
+            {% if value.annotation %}
+              <span class='annotation'>({{ value.annotation | join: ", " }})</span>
             {% endif %}
           </td>
         {% endif %}
