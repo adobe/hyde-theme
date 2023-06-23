@@ -13,9 +13,21 @@ layout: default
 
     {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
 
-    {{page.hyde.brief | markdownify}}
+    {% if page.hyde.inline.brief %}
+        {{page.hyde.inline.brief | markdownify}}
+    {% endif %}
 
-    {{page.hyde.description | markdownify}}
+    {% if page.hyde.brief != "__INLINED__" %}
+        {{page.hyde.brief | markdownify}}
+    {% endif %}
+
+    {% if page.hyde.inline.description %}
+        {{page.hyde.inline.description | markdownify}}
+    {% endif %}
+
+    {% if page.hyde.description != "__INLINED__" %}
+        {{page.hyde.description | markdownify}}
+    {% endif %}
 
     <h2>Values</h2>
 
@@ -23,7 +35,24 @@ layout: default
       {% for value in page.hyde.values %}
         <tr>
           <td class='decl'>{{ value.name }}</td>
-          <td class='defn'>{{ value.description | markdownify }}</td>
+          <td class='defn'>
+            {% if value.description and value.description != "__INLINED__" %}
+                {% assign has_description = true %}
+            {% else %}
+                {% assign has_description = false %}
+            {% endif %}
+
+            {% if value.inline.description %}
+                {{value.inline.description | join: "<br/>" | markdownify}}
+                {% if has_description %}
+                    <br/>
+                {% endif %}
+            {% endif %}
+
+            {% if has_description %}
+                {{ value.description | markdownify }}
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </table>

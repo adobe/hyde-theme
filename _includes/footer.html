@@ -5,7 +5,12 @@
         <tr>
             <td class='footer-left'>
                 Page owner(s):
-                {% for o in page.owner %}
+                {% for o in page.hyde.owner %}
+                    {% if o != "__INLINED__" %}
+                        <a href='https://github.com/{{o}}'>{{o}}</a>&nbsp;
+                    {% endif%}
+                {% endfor %}
+                {% for o in page.hyde.inline.owner %}
                     <a href='https://github.com/{{o}}'>{{o}}</a>&nbsp;
                 {% endfor %}
             </td>
