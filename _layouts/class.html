@@ -3,15 +3,26 @@ layout: default
 ---
 <div class="post">
     <header class="post-header">
-        <h1 class='code'>{{ page.title | escape }}</h1>
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1 class='code'>{{ page.title | escape }}</h1>
+                </td>
+                <td style="text-align: right;">
+                    {% include defined_in_header.html %}
+                </td>
+            </tr>
+        </table>
     </header>
 
     <article class="post-content">
-        {% include defined_in_header.html %}
+        {% if page.hyde.inline.brief %}
+            {{page.hyde.inline.brief | markdownify}}
+        {% endif %}
 
-        <br/>
-
-        {{page.hyde.brief | markdownify}}
+        {% if page.hyde.brief != "__INLINED__" %}
+            {{page.hyde.brief | markdownify}}
+        {% endif %}
 
         {% if page.hyde.declaration.first != empty %}
            <table class='declaration-table'>
