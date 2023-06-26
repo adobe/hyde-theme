@@ -6,6 +6,11 @@
     {% assign overload = entity[1] %}
       <tr>
         <td>
+          {% if overload.annotation contains "implicit" %}
+            <span class='annotation'>(implicit)</span>
+          {% endif %}
+        </td>
+        <td>
           {% highlight c++ %}{{ overload.signature_with_names }}{% endhighlight %}
         </td>
         {% if overload_count > 1 %}
@@ -26,11 +31,12 @@
   {% for entity in page.hyde.overloads %}
     {% assign overload = entity[1] %}
     {% if overload_count > 1 %}
-      <h4 id="overload_{{ forloop.index }}">({{ forloop.index }}) <code>{{ overload.signature_with_names | escape }}</code></h4>
-    {% endif %}
+      <h4 id="overload_{{ forloop.index }}">({{ forloop.index }}) {% highlight c++ %}{{ overload.signature_with_names }}{%endhighlight%}</h4>
+
       {% if overload.annotation %}
         <span class='annotation'>({{overload.annotation | join: ", "}})</span>
       {% endif %}
+    {% endif %}
 
       {% if overload.inline.description %}
         {{overload.inline.description | join: "<br/>" | markdownify }}

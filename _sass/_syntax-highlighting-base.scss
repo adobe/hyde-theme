@@ -10,6 +10,7 @@ code.highlighter-rouge {
     background-color: $inline-code-background-color;
     border: 1px solid $inline-code-accent-color;
 }
+
 /* `highlighted` text in headers or links */
 h1,h2,h3,h4,h5,h6,a {
     code.highlighter-rouge {

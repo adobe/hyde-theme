@@ -10,9 +10,9 @@
 
 $background-color: white;
 $base-font-family: "Source Serif Pro",serif;
-$base-font-size: 16px;
+$base-font-size: 12pt;
 $base-font-weight: 400;
-$base-line-height: 1.5;
+$base-line-height: 1.25;
 $code-font-family: "Source Code Pro",monospace;
 $content-width: 1000px;
 $footer-background-color: #e4e4e4;
@@ -23,10 +23,10 @@ $header-border-color: transparent;
 $header-font-family: "Source Sans Pro",sans-serif;
 $highlight-accent-color: #dbdbdb;
 $highlight-background-color: #f0f0f0;
-$hyde-primary: #006000;
+$hyde-primary: blue;
 $icon-hover-secondary-color: white;
 $icon-secondary-color: white;
-$link-color: #006000;
+$link-color: $hyde-primary;
 $on-laptop: 800px;
 $on-palm: 600px;
 $site-grey-color: #949597;
