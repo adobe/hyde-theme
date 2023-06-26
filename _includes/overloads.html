@@ -6,16 +6,16 @@
     {% assign overload = entity[1] %}
       <tr>
         <td>
-          {% if overload.annotation contains "implicit" %}
-            <span class='annotation'>(implicit)</span>
-          {% endif %}
-        </td>
-        <td>
           {% highlight c++ %}{{ overload.signature_with_names }}{% endhighlight %}
         </td>
         {% if overload_count > 1 %}
             <td><a href="#overload_{{ forloop.index }}">({{ forloop.index }})</a></td>
         {% endif %}
+        <td>
+          {% if overload.annotation %}
+            <span class='annotation'>({{overload.annotation | join: ", "}})</span>
+          {% endif %}
+        </td>
       </tr>
   {% endfor %}
   </table>
