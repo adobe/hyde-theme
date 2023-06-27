@@ -132,22 +132,33 @@ window.hyde_index = {
                     {%- when "function" -%}
                         {%- assign functions = layout.items | sort: "title" -%}
                         "function": `<h3>Functions</h3>
-                        <table class='associated-table'>
+                        <table class='definition-table'>
                           {%- for p in functions -%}
                             <tr>
-                                <td class='name'>
-                                  <div><a href="{{p.url | relative_url}}">{{ p.title | escape }}</a></div>
+                                <td class='decl'>
+                                  <a href="{{p.url | relative_url}}">{{ p.title | escape }}</a>
                                 </td>
-                                <td class='brief'>
-                                    {%- if p.hyde.brief -%}
-                                        {{ p.hyde.brief | markdownify }}
-                                    {%- elsif p.hyde.description -%}
-                                        {{ p.hyde.description | markdownify }}
-                                    {%- else -%}
-                                        {{ '_No details given_' | markdownify }}
+                                <td class='defn'>
+                                    {%- if p.hyde.inline.brief -%}
+                                      {{ p.hyde.inline.brief | join: "<br>" | markdownify}}
                                     {%- endif -%}
+                                    {%- if p.hyde.brief -%}
+                                      {%- if p.hyde.brief == "__OPTIONAL__" or
+                                             p.hyde.brief == "__INLINED__" -%}
+                                        &ZeroWidthSpace;
+                                      {%- else -%}
+                                        {{ p.hyde.brief | markdownify}}
+                                      {%- endif -%}
+                                    {%- endif -%}
+
+                                    {%- assign overload_count = p.hyde.overloads | size -%}
+
+                                    {%- if overload_count > 1 -%}
+                                      &nbsp;<span class="annotation">({{overload_count}} overloads)</span>
+                                    {%- endif -%}
+
                                     {%- if p.hyde.annotation -%}
-                                        <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
+                                      <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
                                     {%- endif -%}
                                 </td>
                             </tr>
@@ -161,7 +172,7 @@ window.hyde_index = {
                         {%- for p in methods -%}
                           {%- if p.hyde.is_ctor -%}
                             <tr>
-                                <td class='decl' colspan='2'><a href='{{p.url | relative_url}}'>(constructor)</a></td>
+                                <td class='decl'><a href='{{p.url | relative_url}}'>(constructor)</a></td>
                             </tr>
                           {%- endif -%}
                         {%- endfor -%}
@@ -169,7 +180,7 @@ window.hyde_index = {
                         {%- for p in methods -%}
                           {%- if p.hyde.is_dtor -%}
                             <tr>
-                                <td class='decl' colspan='2'><a href='{{p.url | relative_url}}'>(destructor)</a></td>
+                                <td class='decl'><a href='{{p.url | relative_url}}'>(destructor)</a></td>
                             </tr>
                           {%- endif -%}
                         {%- endfor -%}
@@ -181,11 +192,11 @@ window.hyde_index = {
 
                           <tr>
                             <td class='decl'>
-                              <div><a href="{{p.url | relative_url}}">{{ p.title | escape }}</a></div>
+                              <a href="{{p.url | relative_url}}">{{ p.title | escape }}</a>
                             </td>
                             <td class='defn'>
                               {%- if p.hyde.inline.brief -%}
-                                {{ p.hyde.inline.brief | markdownify}}
+                                {{ p.hyde.inline.brief | join: "<br>" | markdownify}}
                               {%- endif -%}
 
                               {%- if p.hyde.brief -%}
@@ -195,6 +206,12 @@ window.hyde_index = {
                                 {%- else -%}
                                   {{ p.hyde.brief | markdownify}}
                                 {%- endif -%}
+                              {%- endif -%}
+
+                              {%- assign overload_count = p.hyde.overloads | size -%}
+
+                              {%- if overload_count > 1 -%}
+                                &nbsp;<span class="annotation">({{overload_count}} overloads)</span>
                               {%- endif -%}
 
                               {%- if p.hyde.annotation -%}

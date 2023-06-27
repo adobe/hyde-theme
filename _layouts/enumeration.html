@@ -2,14 +2,21 @@
 layout: default
 ---
 <div class="post">
-  <header class="post-header">
-      <h1 class='code'>{{ page.title | escape }}</h1>
-  </header>
+    <header class="post-header">
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1 class='code'>{{ page.title | escape }}</h1>
+                </td>
+                <td style="text-align: right;">
+                    {% include defined_in_header.html %}
+                </td>
+            </tr>
+        </table>
+    </header>
 
   <article class="post-content">
     {{page.hyde.description}}
-
-    {% include defined_in_header.html %}
 
     {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
 
@@ -22,7 +29,7 @@ layout: default
     {% endif %}
 
     {% if page.hyde.inline.description %}
-        {{page.hyde.inline.description | markdownify}}
+        {{page.hyde.inline.description | join: "<br/>" | markdownify}}
     {% endif %}
 
     {% if page.hyde.description != "__INLINED__" %}
@@ -60,5 +67,15 @@ layout: default
     {{ content }}
 
     {% include external_examples.html name=page.hyde.example header="Example" %}
+
+    {% for entry in page.hyde.inline %}
+      {% if entry[0] == "owner" or
+            entry[0] == "brief" or
+            entry[0] == "description" %}
+          {% continue %}
+      {% endif %}
+      <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+      {{entry[1] | markdownify }}
+    {% endfor %}
   </article>
 </div>

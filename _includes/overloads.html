@@ -37,6 +37,15 @@
         <span class='annotation'>({{overload.annotation | join: ", "}})</span>
       {% endif %}
     {% endif %}
+      {% comment %}
+        `brief` isn't required for specific functions, but _is_ required for the top-level file that
+        documents all the function's overloads. Thus a developer may define a `brief` for an
+        overload though it is not required for `hyde`. Since it is the brief it should precede any
+        enusuing descriptions.
+      {% endcomment %}
+      {% if overload.inline.brief %}
+        {{overload.inline.brief | join: "<br/>" | markdownify }}
+      {% endif %}
 
       {% if overload.inline.description %}
         {{overload.inline.description | join: "<br/>" | markdownify }}
@@ -53,27 +62,34 @@
         <table class='declaration-table'>
           {% for arg in overload.arguments %}
             <tr>
-                <td>
-              <!--code>{{arg.type | escape}}</code-->
-
-              {% if (arg.name != "") and (arg.unnamed == false) %}
-                <code>{{arg.name | escape}}</code>
-              {% else %}
-                <i>unnamed</i>
-              {% endif %}
+                <td style="padding-right: 1em">
+                    {% if overload.inline.arguments[arg.name].direction %}
+                        <span class="annotation">{{overload.inline.arguments[arg.name].direction}}</span>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
                 </td>
-                <td>
-              {% if arg.description and (arg.description != "__OPTIONAL__") %}
-                {{arg.description | markdownify}}
-              {% else if arg.name and overload.inline.arguments[arg.name].description %}
-                {{overload.inline.arguments[arg.name].description | markdownify}}
-              {% endif %}
+                <td style="white-space: nowrap; padding-right: 1em">
+                    {% highlight c++ %}{{arg.type}}{% endhighlight %}
+                </td>
+                <td style="padding-right: 1em">
+                    {% if (arg.name != "") and (arg.unnamed == false) %}
+                        {% highlight c++ %}{{arg.name}}{% endhighlight %}
+                    {% else %}
+                        <i>unnamed</i>
+                    {% endif %}
+                </td>
+                <td width='100%'>
+                    {% if arg.description and (arg.description != "__OPTIONAL__") %}
+                        {{arg.description | markdownify}}
+                    {% else if arg.name and overload.inline.arguments[arg.name].description %}
+                        {{overload.inline.arguments[arg.name].description | markdownify}}
+                    {% endif %}
                 </td>
             </tr>
           {% endfor %}
         </table>
       {% endif %}
-
 
       {% if overload.return and (overload.return != "__OPTIONAL__") %}
         <h5>Returns</h5> {{overload.return | markdownify}}
@@ -82,5 +98,16 @@
         <h5>Returns</h5> {{overload.inline.return | markdownify}}
       {% endif %}
 
+      {% for entry in overload.inline %}
+        {% if entry[0] == "owner" or
+              entry[0] == "brief" or
+              entry[0] == "description" or
+              entry[0] == "arguments" or
+              entry[0] == "return" %}
+            {% continue %}
+        {% endif %}
+        <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+        {{entry[1] | markdownify }}
+      {% endfor %}
   {% endfor %}
 {% endif %}

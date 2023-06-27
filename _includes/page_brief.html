@@ -1,4 +1,10 @@
-{% if page.hyde.brief and page.hyde.brief != "__MISSING__" %}
+{% if page.hyde.brief and
+      page.hyde.brief != "__MISSING__" and
+      page.hyde.brief != "__OPTIONAL__" and
+      page.hyde.brief != "__INLINED__" %}
     <br/>
     {{page.hyde.brief | markdownify}}
+{% elsif page.hyde.inline.brief %}
+    <br/>
+    {{page.hyde.inline.brief | markdownify}}
 {% endif %}

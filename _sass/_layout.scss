@@ -360,13 +360,18 @@ table {
             > th {
                 text-align: left;
             }
+            > th:not(:first-child) {
+                padding-left: 1em;
+            }
             > td {
                 > p {
                     margin: 0;
                     display: inline;
                 }
-                padding-right: 1.5em;
                 vertical-align: top;
+            }
+            > td:not(:first-child) {
+                padding-left: 1em;
             }
             > td.type {
                 font-family: $code-font-family;
@@ -379,13 +384,13 @@ table {
                 vertical-align: top;
             }
             > td.decl {
-                text-indent: -3em;
-                padding-left: 3em;
                 font-family: $code-font-family;
+                white-space: nowrap;
                 vertical-align: top;
             }
             > td.defn {
                 padding-right: 0;
+                width: 100%;
             }
         }
     }

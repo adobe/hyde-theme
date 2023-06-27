@@ -24,6 +24,14 @@ layout: default
             {{page.hyde.brief | markdownify}}
         {% endif %}
 
+        {% if page.hyde.inline.description %}
+            {{page.hyde.inline.description | join: "<br/>" | markdownify}}
+        {% endif %}
+
+        {% if page.hyde.description != "__INLINED__" %}
+            {{page.hyde.description | markdownify}}
+        {% endif %}
+
         {% if page.hyde.declaration.first != empty %}
            <table class='declaration-table'>
             {% for item in page.hyde.declaration %}
@@ -55,6 +63,16 @@ layout: default
         {{ content }}
 
         {% include external_examples.html name=page.hyde.example header="Example" %}
+
+        {% for entry in page.hyde.inline %}
+          {% if entry[0] == "owner" or
+                entry[0] == "brief" or
+                entry[0] == "description" %}
+              {% continue %}
+          {% endif %}
+          <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+          {{entry[1] | markdownify }}
+        {% endfor %}
     </article>
 </div>
 
