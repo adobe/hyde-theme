@@ -1,23 +1,58 @@
 <footer class="site-footer">
   <div class="wrapper">
-    <h2 class="footer-heading">{{ site.title }} &mdash; {{ site.subtitle }}</h2>
+    {% if site.title or site.subtitle %}
+        <h2 class="footer-heading">
+            {% if site.title %}
+                {{ site.title }}
+            {% endif %}
+            {% if site.title and site.subtitle %}
+                &mdash;
+            {% endif %}
+            {% if site.subtitle %}
+                {{ site.subtitle }}
+            {% endif %}
+        </h2>
+    {% endif %}
     <table class='footer-table'>
         <tr>
-            <td class='footer-left'>
+            <td class='footer-left' style="white-space: nowrap;">
                 Page owner(s):
-                {% for o in page.hyde.owner %}
-                    {% if o != "__INLINED__" %}
-                        <a href='https://github.com/{{o}}'>{{o}}</a>&nbsp;
-                    {% endif%}
-                {% endfor %}
-                {% for o in page.hyde.inline.owner %}
-                    <a href='https://github.com/{{o}}'>{{o}}</a>&nbsp;
-                {% endfor %}
+                {% if page.hyde.owner.first %}
+                    {% assign all_owners = page.hyde.owner | join: "," %}
+                {% elsif page.hyde.owner %}
+                    {% assign all_owners = page.hyde.owner %}
+                {% endif %}
+                {% if page.hyde.inline.owner %}
+                    {% if all_owners %}
+                        {% assign all_owners = all_owners | append: "," %}
+                    {% endif %}
+                    {% if page.hyde.inline.owner.first %}
+                        {% assign inline_joined = page.hyde.inline.owner | join: "," %}
+                        {% assign all_owners = all_owners | append: inline_joined %}
+                    {% elsif page.hyde.inline.owner %}
+                        {% assign all_owners = all_owners | append: page.hyde.inline.owner %}
+                    {% endif %}
+                {% endif %}
+                {% assign all_owners = all_owners | remove: ",__INLINED__" | remove: "__INLINED__," | remove: "__INLINED__" %}
+                {% assign all_owners = all_owners | remove: ",__OPTIONAL__" | remove: "__OPTIONAL__," | remove: "__OPTIONAL__" %}
+                {% if all_owners and all_owners != "" %}
+                    {% assign owner_array = all_owners | split: "," %}
+                    {% for o in owner_array %}
+                            {% if done_first_owner %}
+                                &nbsp;|&nbsp;
+                            {% else %}
+                                {% assign done_first_owner = true %}
+                            {% endif %}
+                            <a href='https://github.com/{{o}}'>{{o}}</a>
+                    {% endfor %}
+                {% else %}
+                    <i>none</i>
+                {% endif %}
             </td>
             <td class='footer-center'>
             </td>
             <td  class='footer-right'>
-                Last updated: {{ site.time }}
+                Last updated {{ site.time }}
             </td>
         </tr>
     </table>

@@ -57,6 +57,11 @@
         {{overload.description | markdownify}}
       {% endif %}
 
+      {% if overload.inline.pre %}
+        <h5>Preconditions</h5>
+        {{overload.inline.pre | markdownify}}
+      {% endif %}
+
       {% if overload.arguments %}
         <h5>Parameters</h5>
         <table class='declaration-table'>
@@ -91,19 +96,49 @@
         </table>
       {% endif %}
 
+      {% if (overload.return and
+            (overload.return != "__OPTIONAL__")) or
+            overload.inline.return %}
+        <h5>Returns</h5>
+      {%endif%}
       {% if overload.return and (overload.return != "__OPTIONAL__") %}
-        <h5>Returns</h5> {{overload.return | markdownify}}
+        {{overload.return | markdownify}}
       {% endif %}
       {% if overload.inline.return %}
-        <h5>Returns</h5> {{overload.inline.return | markdownify}}
+        {{overload.inline.return | markdownify}}
+      {% endif %}
+
+      {% if overload.inline.post %}
+        <h5>Postconditions</h5>
+        {{overload.inline.post | markdownify}}
+      {% endif %}
+
+      {% if overload.inline.throw %}
+        <h5>Exceptions</h5>
+        {{overload.inline.throw | markdownify}}
+      {% endif %}
+
+      {% if overload.inline.todo %}
+        <h5>To Do</h5>
+        {{overload.inline.todo | markdownify}}
+      {% endif %}
+
+      {% if overload.inline.warning %}
+        <h5>Warning</h5>
+        {{overload.inline.warning | markdownify}}
       {% endif %}
 
       {% for entry in overload.inline %}
         {% if entry[0] == "owner" or
               entry[0] == "brief" or
               entry[0] == "description" or
+              entry[0] == "pre" or
+              entry[0] == "post" or
               entry[0] == "arguments" or
-              entry[0] == "return" %}
+              entry[0] == "return" or
+              entry[0] == "throw" or
+              entry[0] == "todo" or
+              entry[0] == "warning" %}
             {% continue %}
         {% endif %}
         <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>

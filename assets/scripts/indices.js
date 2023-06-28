@@ -1,5 +1,5 @@
 ---
-layout: null
+layout: ~
 ---
 /*
 Copyright 2020 Adobe. All rights reserved.
@@ -172,7 +172,15 @@ window.hyde_index = {
                         {%- for p in methods -%}
                           {%- if p.hyde.is_ctor -%}
                             <tr>
-                                <td class='decl'><a href='{{p.url | relative_url}}'>(constructor)</a></td>
+                                <td class='decl'>
+                                    <a href='{{p.url | relative_url}}'>(constructor)</a>
+                                </td>
+                                <td class='defn'>
+                                    {%- assign overload_count = p.hyde.overloads | size -%}
+                                    {%- if overload_count > 1 -%}
+                                        <span class="annotation">({{overload_count}} overloads)</span>
+                                    {%- endif -%}
+                                </td>
                             </tr>
                           {%- endif -%}
                         {%- endfor -%}

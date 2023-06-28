@@ -65,17 +65,5 @@ layout: default
     {{ content }}
 
     {% include external_examples.html name=page.hyde.example header="Example" %}
-
-    {% for entry in overload.inline %}
-      {% if entry[0] == "owner" or
-            entry[0] == "brief" or
-            entry[0] == "description" or
-            entry[0] == "arguments" or
-            entry[0] == "return" %}
-          {% continue %}
-      {% endif %}
-      <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
-      {{entry[1] | markdownify }}
-    {% endfor %}
   </article>
 </div>
