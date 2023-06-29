@@ -1,5 +1,5 @@
 ---
-layout: ~
+# This file needs front matter for Jekyll to process it; the dashes are enough.
 ---
 /*
 Copyright 2020 Adobe. All rights reserved.
@@ -15,6 +15,104 @@ governing permissions and limitations under the License.
 
 {% assign siblings = site.pages | group_by_exp: "e", "e.url | split: '/' | pop | join: '/' | append: '/'" | sort: "name" %}
 
+window.hyde_siblings = {
+    {% for sibling in siblings %}
+        {%- assign layouts = sibling.items | group_by: "layout" | sort: "name" -%}
+        {{ sibling.name | jsonify }}: {
+            {% for layout in layouts %}
+                {%- if layout.name == "" -%}
+                    {%- continue -%}
+                {%- endif -%}
+                    {% case layout.name %}
+                        {%- when "directory" or
+                                 "default" or
+                                 "eng_index" or
+                                 "individual_blog" or
+                                 "class" or
+                                 "enumeration" or
+                                 "function" or
+                                 "method" or
+                                 "page" -%}
+                            {%- assign entries = layout.items | sort: "title" -%}
+                            {{layout.name | jsonify}} : [
+                                {% for entry in entries %} {
+                                        {%- if entry.title -%}
+                                            "title" : {{entry.title | jsonify}},
+                                        {%- endif -%}
+                                        {%- if entry.url -%}
+                                            "url" : {{entry.url | jsonify}},
+                                        {%- endif -%}
+                                        {%- if entry.hyde -%}
+                                            "hyde" : {
+                                                {%- if entry.hyde.owner -%}
+                                                    "owner" : {{entry.hyde.owner | jsonify}},
+                                                {%- endif -%}
+                                                {%- if entry.hyde.brief -%}
+                                                    "brief" : {{entry.hyde.brief | jsonify}},
+                                                {%- endif -%}
+                                                {%- if entry.hyde.description -%}
+                                                    "description" : {{entry.hyde.description | jsonify}},
+                                                {%- endif -%}
+                                                {%- if entry.hyde.tab -%}
+                                                    "tab" : {{entry.hyde.tab | jsonify}},
+                                                {%- endif -%}
+                                                {%- if entry.hyde.icon -%}
+                                                    "icon" : {{entry.hyde.icon | jsonify}},
+                                                {%- endif -%}
+                                                {%- if entry.hyde.short_title -%}
+                                                    "short_title" : {{entry.hyde.short_title | jsonify}},
+                                                {%- endif -%}
+                                            },
+                                        {%- endif -%}
+                                    },
+                                {% endfor %}
+                        ],
+                        {%- when "library" -%}
+                            {%- assign sub_libs = layout.items | group_by: "hyde.library-type" | sort: "name" -%}
+                            {%- for sub_lib in sub_libs -%}
+                                {{sub_lib.name | jsonify}} : [
+                                    {%- assign entries = sub_lib.items | sort: "title" -%}
+                                    {% for entry in entries %} {
+                                            {%- if entry.title -%}
+                                                "title" : {{entry.title | jsonify}},
+                                            {%- endif -%}
+                                            {%- if entry.url -%}
+                                                "url" : {{entry.url | jsonify}},
+                                            {%- endif -%}
+                                            {%- if entry.hyde -%}
+                                                "hyde" : {
+                                                    {%- if entry.hyde.owner -%}
+                                                        "owner" : {{entry.hyde.owner | jsonify}},
+                                                    {%- endif -%}
+                                                    {%- if entry.hyde.brief -%}
+                                                        "brief" : {{entry.hyde.brief | jsonify}},
+                                                    {%- endif -%}
+                                                    {%- if entry.hyde.description -%}
+                                                        "description" : {{entry.hyde.description | jsonify}},
+                                                    {%- endif -%}
+                                                    {%- if entry.hyde.tab -%}
+                                                        "tab" : {{entry.hyde.tab | jsonify}},
+                                                    {%- endif -%}
+                                                    {%- if entry.hyde.icon -%}
+                                                        "icon" : {{entry.hyde.icon | jsonify}},
+                                                    {%- endif -%}
+                                                    {%- if entry.hyde.short_title -%}
+                                                        "short_title" : {{entry.hyde.short_title | jsonify}},
+                                                    {%- endif -%}
+                                                },
+                                            {%- endif -%}
+                                        },
+                                    {% endfor %}
+                                ],
+                            {%- endfor -%}
+                        {%- else -%}
+                            "nothing!",
+                    {%- endcase -%}
+            {% endfor %}
+        },
+    {% endfor %}
+};
+
 window.hyde_index = {
     {% for sibling in siblings %}
         {%- assign layouts = sibling.items | group_by: "layout" | sort: "name" -%}
@@ -24,27 +122,27 @@ window.hyde_index = {
                     {%- when "directory" -%}
                         {%- assign directories = layout.items | sort: "title" -%}
                         "directory": `<h3>Directories</h3>
-                        <table class='associated-table'>
-                                        {%- for p in directories -%}
-                            <tr>
-                                <td class='name'>
-                                  <div><a href="{{p.url | relative_url}}"><code>{{ p.title | escape }}</code></a></div>
-                                </td>
-                                <td class='brief'>
-                                    {%- if p.hyde.brief -%}
-                                        {{ p.hyde.brief | markdownify }}
-                                    {%- elsif p.hyde.description -%}
-                                        {{ p.hyde.description | markdownify }}
-                                    {%- else -%}
-                                        {{ '_No details given_' | markdownify }}
-                                    {%- endif -%}
-                                    {%- if p.hyde.annotation -%}
-                                        <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
-                                    {%- endif -%}
-                                </td>
-                            </tr>
-                                        {%- endfor -%}
-                        </table>`,
+                            <table class='associated-table'>
+                                {%- for p in directories -%}
+                                    <tr>
+                                        <td class='name'>
+                                          <div><a href="{{p.url | relative_url}}"><code>{{ p.title | escape }}</code></a></div>
+                                        </td>
+                                        <td class='brief'>
+                                            {%- if p.hyde.brief -%}
+                                                {{ p.hyde.brief | markdownify }}
+                                            {%- elsif p.hyde.description -%}
+                                                {{ p.hyde.description | markdownify }}
+                                            {%- else -%}
+                                                {{ '_No details given_' | markdownify }}
+                                            {%- endif -%}
+                                            {%- if p.hyde.annotation -%}
+                                                <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
+                                            {%- endif -%}
+                                        </td>
+                                    </tr>
+                                    {%- endfor -%}
+                            </table>`,
                     {%- when "library" -%}
                         {%- assign sub_libs = layout.items | group_by: "hyde.library-type" | sort: "name" -%}
                         {%- for sub_lib in sub_libs -%}
@@ -270,7 +368,7 @@ window.hyde_index = {
                             <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify }}</a>
                         </td>
                     </tr>
-                    {%- endfor -%}`
+                    {%- endfor -%}`,
                     {%- when "eng_index" -%}
                         {%- assign subdocs = layout.items | sort: "title" -%}
                         "eng_index":`{%- for p in subdocs -%}
@@ -282,8 +380,7 @@ window.hyde_index = {
                                     <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify }}</a>
                                 </td>
                             </tr>
-                            {%- endfor -%}`
-
+                            {%- endfor -%}`,
                 {%- endcase -%}
             {%- endfor -%}
         },
@@ -294,10 +391,10 @@ window.hyde_tabs = `
     {% assign tabbed = site.pages | where_exp:"p", "p.hyde.tab" | sort:"tab" %}
     {% for p in tabbed %}
         <a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{{ p.hyde.tab }}</a>
-    {% endfor %}`
-    ;
+    {% endfor %}
+    `;
 
-{% comment %}
+{%-comment-%}
 // Save this for debugging purposes. Leave it commented out so it doesn't fail to parse, etc.
 // window.blarglblargh = {
 //     {% for sibling in siblings %}
@@ -309,7 +406,7 @@ window.hyde_tabs = `
 //         },
 //     {% endfor %}
 // }
-{% endcomment %}
+{%-endcomment-%}
 
 window.hyde_title_index = {
     {% for p in site.pages %}
