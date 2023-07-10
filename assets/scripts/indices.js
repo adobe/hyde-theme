@@ -130,11 +130,11 @@ window.hyde_index = {
                                         </td>
                                         <td class='brief'>
                                             {%- if p.hyde.brief -%}
-                                                {{ p.hyde.brief | markdownify | replace: "`", "" }}
+                                                {{ p.hyde.brief | markdownify | replace: "`", "&#96;" }}
                                             {%- elsif p.hyde.description -%}
-                                                {{ p.hyde.description | markdownify | replace: "`", "" }}
+                                                {{ p.hyde.description | markdownify | replace: "`", "&#96;" }}
                                             {%- else -%}
-                                                {{ '_No details given_' | markdownify | replace: "`", "" }}
+                                                {{ '_No details given_' | markdownify | replace: "`", "&#96;" }}
                                             {%- endif -%}
                                             {%- if p.hyde.annotation -%}
                                                 <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
@@ -158,11 +158,11 @@ window.hyde_index = {
                                             </td>
                                             <td class='brief'>
                                                 {%- if p.hyde.brief -%}
-                                                    {{ p.hyde.brief | markdownify | replace: "`", "" }}
+                                                    {{ p.hyde.brief | markdownify | replace: "`", "&#96;" }}
                                                 {%- elsif p.hyde.description -%}
-                                                    {{ p.hyde.description | markdownify | replace: "`", "" }}
+                                                    {{ p.hyde.description | markdownify | replace: "`", "&#96;" }}
                                                 {%- else -%}
-                                                    {{ '_No details given_' | markdownify | replace: "`", "" }}
+                                                    {{ '_No details given_' | markdownify | replace: "`", "&#96;" }}
                                                 {%- endif -%}
                                                 {%- if p.hyde.annotation -%}
                                                     <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
@@ -182,11 +182,11 @@ window.hyde_index = {
                                             </td>
                                             <td class='brief'>
                                                 {%- if p.hyde.brief -%}
-                                                    {{ p.hyde.brief | markdownify | replace: "`", "" }}
+                                                    {{ p.hyde.brief | markdownify | replace: "`", "&#96;" }}
                                                 {%- elsif p.hyde.description -%}
-                                                    {{ p.hyde.description | markdownify | replace: "`", "" }}
+                                                    {{ p.hyde.description | markdownify | replace: "`", "&#96;" }}
                                                 {%- else -%}
-                                                    {{ '_No details given_' | markdownify | replace: "`", "" }}
+                                                    {{ '_No details given_' | markdownify | replace: "`", "&#96;" }}
                                                 {%- endif -%}
                                                 {%- if p.hyde.annotation -%}
                                                     <span class='annotation'>({{p.hyde.annotation | join: ", "}})</span>
@@ -208,7 +208,7 @@ window.hyde_index = {
                                 </td>
                                 <td class='brief'>
                                   {%- if p.hyde.inline.brief -%}
-                                    {{ p.hyde.inline.brief | markdownify | replace: "`", ""}}
+                                    {{ p.hyde.inline.brief | markdownify | replace: "`", "&#96;"}}
                                   {%- endif -%}
 
                                   {%- if p.hyde.brief -%}
@@ -216,7 +216,7 @@ window.hyde_index = {
                                            p.hyde.brief == "__INLINED__" -%}
                                       &ZeroWidthSpace;
                                     {%- else -%}
-                                      {{ p.hyde.brief | markdownify | replace: "`", ""}}
+                                      {{ p.hyde.brief | markdownify | replace: "`", "&#96;"}}
                                     {%- endif -%}
                                   {%- endif -%}
 
@@ -238,14 +238,14 @@ window.hyde_index = {
                                 </td>
                                 <td class='defn'>
                                     {%- if p.hyde.inline.brief -%}
-                                      {{ p.hyde.inline.brief | join: "<br>" | markdownify | replace: "`", ""}}
+                                      {{ p.hyde.inline.brief | join: "<br>" | markdownify | replace: "`", "&#96;"}}
                                     {%- endif -%}
                                     {%- if p.hyde.brief -%}
                                       {%- if p.hyde.brief == "__OPTIONAL__" or
                                              p.hyde.brief == "__INLINED__" -%}
                                         &ZeroWidthSpace;
                                       {%- else -%}
-                                        {{ p.hyde.brief | markdownify | replace: "`", ""}}
+                                        {{ p.hyde.brief | markdownify | replace: "`", "&#96;"}}
                                       {%- endif -%}
                                     {%- endif -%}
 
@@ -302,7 +302,7 @@ window.hyde_index = {
                             </td>
                             <td class='defn'>
                               {%- if p.hyde.inline.brief -%}
-                                {{ p.hyde.inline.brief | join: "<br>" | markdownify | replace: "`", ""}}
+                                {{ p.hyde.inline.brief | join: "<br>" | markdownify | replace: "`", "&#96;"}}
                               {%- endif -%}
 
                               {%- if p.hyde.brief -%}
@@ -310,7 +310,7 @@ window.hyde_index = {
                                        p.hyde.brief == "__INLINED__" -%}
                                   &ZeroWidthSpace;
                                 {%- else -%}
-                                  {{ p.hyde.brief | markdownify | replace: "`", ""}}
+                                  {{ p.hyde.brief | markdownify | replace: "`", "&#96;"}}
                                 {%- endif -%}
                               {%- endif -%}
 
@@ -338,7 +338,7 @@ window.hyde_index = {
                       </td>
                       <td class='brief'>
                         {%- if p.hyde.inline.brief -%}
-                          {{ p.hyde.inline.brief | markdownify | replace: "`", ""}}
+                          {{ p.hyde.inline.brief | markdownify | replace: "`", "&#96;"}}
                         {%- endif -%}
 
                         {%- if p.hyde.brief -%}
@@ -346,7 +346,7 @@ window.hyde_index = {
                                  p.hyde.brief == "__INLINED__" -%}
                             &ZeroWidthSpace;
                           {%- else -%}
-                            {{ p.hyde.brief | markdownify | replace: "`", ""}}
+                            {{ p.hyde.brief | markdownify | replace: "`", "&#96;"}}
                           {%- endif -%}
                         {%- endif -%}
 
@@ -365,7 +365,7 @@ window.hyde_index = {
                             <i class="fa fa-book"></i>
                         </td>
                         <td>
-                            <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "" }}</a>
+                            <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
                         </td>
                     </tr>
                     {%- endfor -%}`,
@@ -377,7 +377,7 @@ window.hyde_index = {
                                     <i class="fa fa-folder"></i>
                                 </td>
                                 <td>
-                                    <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "" }}</a>
+                                    <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
                                 </td>
                             </tr>
                             {%- endfor -%}`,
