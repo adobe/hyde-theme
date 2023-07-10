@@ -34,12 +34,6 @@ $site-menu-background-color: inherit;
 $site-menu-border-color: transparent;
 $spacing-unit: 30px;
 $text-color: #333;
-
-@import
-    "overrides",
-    "overrides-light"
-;
-
 $embedded-code-accent-color: $highlight-background-color;
 $embedded-code-background-color: $highlight-background-color;
 $embedded-code-text-color: $text-color;
@@ -72,6 +66,8 @@ $header-image: url({{ site.adobe_hyde.header_image | prepend: site.baseurl }});
 {% endif %}
 
 @import
+    "overrides",
+    "overrides-light",
     "main",
     "syntax-highlighting-light"
 ;

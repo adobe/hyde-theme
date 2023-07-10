@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-theme-adobe-hyde (1.0.0)
+    jekyll-theme-adobe-hyde (2.0.0)
       jekyll (~> 3.8)
       jekyll-seo-tag (~> 2.0)
 
