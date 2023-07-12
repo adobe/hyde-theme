@@ -3,19 +3,38 @@ layout: default
 ---
 <div class="post">
     <header class="post-header">
-        <h1 class='code'>{{ page.title | escape }}</h1>
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1 class='code'>{{ page.title | escape }}</h1>
+                </td>
+                <td style="text-align: right;">
+                    {% include defined_in_header.html %}
+                </td>
+            </tr>
+        </table>
     </header>
 
     <article class="post-content">
-        {% include defined_in_header.html %}
+        {% if page.hyde.inline.brief %}
+            {{page.hyde.inline.brief | markdownify}}
+        {% endif %}
 
-        <br/>
+        {% if page.hyde.brief != "__INLINED__" %}
+            {{page.hyde.brief | markdownify}}
+        {% endif %}
 
-        {{page.brief | markdownify}}
+        {% if page.hyde.inline.description %}
+            {{page.hyde.inline.description | join: "<br/>" | markdownify}}
+        {% endif %}
 
-        {% if page.declaration.first != empty %}
+        {% if page.hyde.description != "__INLINED__" %}
+            {{page.hyde.description | markdownify}}
+        {% endif %}
+
+        {% if page.hyde.declaration.first != empty %}
            <table class='declaration-table'>
-            {% for item in page.declaration %}
+            {% for item in page.hyde.declaration %}
             <tr>
               <td>
                 {% highlight cpp %}{{ item }}{% endhighlight %}
@@ -24,10 +43,10 @@ layout: default
            {% endfor %}
            </table>
         {% else %}
-            {% highlight c++ %}{{ page.declaration }}{% endhighlight %}
+            {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
         {% endif %}
 
-        {{page.description | markdownify}}
+        {{page.hyde.description | markdownify}}
 
         {% include associated_enumerations.html %}
 
@@ -43,7 +62,17 @@ layout: default
 
         {{ content }}
 
-        {% include external_examples.html name=page.example header="Example" %}
+        {% include external_examples.html name=page.hyde.example header="Example" %}
+
+        {% for entry in page.hyde.inline %}
+          {% if entry[0] == "owner" or
+                entry[0] == "brief" or
+                entry[0] == "description" %}
+              {% continue %}
+          {% endif %}
+          <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+          {{entry[1] | markdownify }}
+        {% endfor %}
     </article>
 </div>
 

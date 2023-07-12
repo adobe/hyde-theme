@@ -15,14 +15,25 @@
 
 <div class="breadcrumb-wrapper">
   <ol class="breadcrumb">
-    <li><a href="{{ site.baseurl }}/"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ site.baseurl }}/">&#x1F3E0;</a></li>
     {% for crumb in crumbs %}
       {% if crumb == "/" %} {% continue %} {% endif %}
       <script>
           var crumb_index = window.hyde_title_index;
           if ('{{ crumb }}' in crumb_index) {
+              // When written straight to the document templated types like `space_t<S>` inadvertently
+              // inject HTML, affecting the subsequent layout of the documentation. We entity-ify
+              // the type name here to work around that issue.
+              var raw_string = crumb_index['{{ crumb }}'];
+              var last_slash = raw_string.lastIndexOf("/");
+              if (last_slash != -1) {
+                  raw_string = raw_string.substr(last_slash + 1);
+              }
+              var entity_encoded = raw_string.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+                  return '&#'+i.charCodeAt(0)+';';
+              });
               document.write("<li> | ");
-              document.write("<a href='{{crumb | prepend: site.baseurl}}'>" + crumb_index['{{ crumb }}'] + "</a>");
+              document.write("<a href='{{crumb | prepend: site.baseurl}}'>" + entity_encoded + "</a>");
               document.write("</li>");
           } else {
               // document.write("?????");

@@ -2,34 +2,80 @@
 layout: default
 ---
 <div class="post">
-  <header class="post-header">
-      <h1 class='code'>{{ page.title | escape }}</h1>
-  </header>
+    <header class="post-header">
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1 class='code'>{{ page.title | escape }}</h1>
+                </td>
+                <td style="text-align: right;">
+                    {% include defined_in_header.html %}
+                </td>
+            </tr>
+        </table>
+    </header>
 
   <article class="post-content">
-    {{page.description}}
+    {{page.hyde.description}}
 
-    {% include defined_in_header.html %}
+    {% highlight c++ %}{{ page.hyde.declaration }}{% endhighlight %}
 
-    {% highlight c++ %}{{ page.declaration }}{% endhighlight %}
+    {% if page.hyde.inline.brief %}
+        {{page.hyde.inline.brief | markdownify}}
+    {% endif %}
 
-    {{page.brief | markdownify}}
+    {% if page.hyde.brief != "__INLINED__" %}
+        {{page.hyde.brief | markdownify}}
+    {% endif %}
 
-    {{page.description | markdownify}}
+    {% if page.hyde.inline.description %}
+        {{page.hyde.inline.description | join: "<br/>" | markdownify}}
+    {% endif %}
+
+    {% if page.hyde.description != "__INLINED__" %}
+        {{page.hyde.description | markdownify}}
+    {% endif %}
 
     <h2>Values</h2>
 
     <table class='definition-table'>
-      {% for value in page.values %}
+      {% for value in page.hyde.values %}
         <tr>
           <td class='decl'>{{ value.name }}</td>
-          <td class='defn'>{{ value.description | markdownify }}</td>
+          <td class='defn'>
+            {% if value.description and value.description != "__INLINED__" %}
+                {% assign has_description = true %}
+            {% else %}
+                {% assign has_description = false %}
+            {% endif %}
+
+            {% if value.inline.description %}
+                {{value.inline.description | join: "<br/>" | markdownify}}
+                {% if has_description %}
+                    <br/>
+                {% endif %}
+            {% endif %}
+
+            {% if has_description %}
+                {{ value.description | markdownify }}
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </table>
 
     {{ content }}
 
-    {% include external_examples.html name=page.example header="Example" %}
+    {% include external_examples.html name=page.hyde.example header="Example" %}
+
+    {% for entry in page.hyde.inline %}
+      {% if entry[0] == "owner" or
+            entry[0] == "brief" or
+            entry[0] == "description" %}
+          {% continue %}
+      {% endif %}
+      <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+      {{entry[1] | markdownify }}
+    {% endfor %}
   </article>
 </div>

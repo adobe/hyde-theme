@@ -1,4 +1,4 @@
-{% if page.typedefs %}
+{% if page.hyde.typedefs %}
   <h3>Types</h3>
   <table class='definition-table'>
     <tr class='headers'>
@@ -6,15 +6,23 @@
       <th>Definition</th>
       <th>Notes</th>
     </tr>
-    {% for type in page.typedefs %}
+    {% for type in page.hyde.typedefs %}
+      {% assign key = type[0] %}
+      {% assign value = type[1] %}
+
       <tr>
-        <td class='type'>{% highlight c++ %}{{ type[0] }}{% endhighlight %}</td>
-        <td class='decl'>{{ type[1].definition | escape}}</td>
-        {% if type[1].description or type[1].annotation %}
+        <td class='type'>{% highlight c++ %}{{ key }}{% endhighlight %}</td>
+        <td class='decl'>{{ value.definition | escape}}</td>
+        {% if value.description or value.inline.description or value.annotation %}
           <td class='defn'>
-            {{ type[1].description | markdownify }}
-            {% if type[1].annotation %}
-              <span class='annotation'>({{ type[1].annotation | join: ", " }})</span>
+            {% if value.description != "__INLINED__" %}
+              {{ value.description | markdownify }}
+            {% endif %}
+
+            {{ value.inline.description | join:"<br/>" | markdownify }}
+
+            {% if value.annotation %}
+              <span class='annotation'>({{ value.annotation | join: ", " }})</span>
             {% endif %}
           </td>
         {% endif %}

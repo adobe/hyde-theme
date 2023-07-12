@@ -10,9 +10,9 @@
 
 $background-color: #1e1e1e;
 $base-font-family: "Source Serif Pro",serif;
-$base-font-size: 16px;
+$base-font-size: 12pt;
 $base-font-weight: 400;
-$base-line-height: 1.5;
+$base-line-height: 1.25;
 $code-font-family: "Source Code Pro",monospace;
 $content-width: 1000px;
 $embedded-code-accent-color: inherit;
@@ -40,12 +40,6 @@ $site-menu-border-color: transparent;
 $spacing-unit: 30px;
 $table-separator-color: #505050;
 $text-color: #d4d4d4;
-
-@import
-    "overrides",
-    "overrides-dark"
-;
-
 $embedded-code-text-color: $text-color;
 $footer-link-color: $site-grey-color;
 $footer-text-color: $site-grey-color;
@@ -68,6 +62,8 @@ $header-image: url({{ site.adobe_hyde.header_image | prepend: site.baseurl }});
 {% endif %}
 
 @import
+    "overrides",
+    "overrides-dark",
     "main",
     "syntax-highlighting-dark"
 ;

@@ -2,22 +2,35 @@
 layout: default
 ---
 <div class="post">
-  <header class="post-header">
-      <h1 class='code'>{{ page.title | escape }}</h1>
-  </header>
+    <header class="post-header">
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1 class='code'>{{ page.title | escape }}</h1>
+                </td>
+                <td style="text-align: right;">
+                    {% include defined_in_header.html %}
+                </td>
+            </tr>
+        </table>
+    </header>
 
   <article class="post-content">
-    {% include defined_in_header.html %}
-
-    <br/>
-
-    {{page.brief | markdownify}}
-
-    <br/>
+    {% comment %}
+        We don't use `page_brief.html` here because it could cause the inline brief to get used,
+        which would be a roll-up of documentation already present on this page. Since we only want
+        the docs shown once, we stick with the manually-entered brief exclusively.
+    {% endcomment %}
+    {% if page.hyde.brief and
+          page.hyde.brief != "__MISSING__" and
+          page.hyde.brief != "__OPTIONAL__" and
+          page.hyde.brief != "__INLINED__" %}
+        {{page.hyde.brief | markdownify}}
+    {% endif %}
 
     {% include overloads.html %}
 
-    {% for entity in page.entities %}
+    {% for entity in page.hyde.entities %}
       {% case entity.kind %}
         {% when 'parameters'%}
           <h3>Parameters</h3>
@@ -51,6 +64,6 @@ layout: default
 
     {{ content }}
 
-    {% include external_examples.html name=page.example header="Example" %}
+    {% include external_examples.html name=page.hyde.example header="Example" %}
   </article>
 </div>

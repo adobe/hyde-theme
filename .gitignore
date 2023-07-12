@@ -1,4 +1,7 @@
-
 .DS_Store
 .jekyll-metadata
 *.gem
+.sass-cache/
+_site/
+index.html
+libraries/
