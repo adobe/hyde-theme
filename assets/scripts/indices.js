@@ -358,17 +358,17 @@ window.hyde_index = {
                     {%- endfor -%}
                     </table>`,
                     {%- when "page" -%}
-                    {%- assign pages = layout.items | sort: "hyde.date" | reverse -%}
+                    {%- assign pages = layout.items | sort: "title" | reverse -%}
                     "page": `{%- for p in pages -%}
                     <tr>
                         <td>
                             <i class="fa fa-book"></i>
                         </td>
-                        {%- if p.hyde.date -%}
-                            <td>
+                        <td>
+                            {%- if p.hyde.date -%}
                                 {{ p.hyde.date }}
-                            </td>
-                        {%- endif -%}
+                            {%- endif -%}
+                        </td>
                         <td>
                             <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
                         </td>
