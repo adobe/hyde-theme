@@ -358,22 +358,31 @@ window.hyde_index = {
                     {%- endfor -%}
                     </table>`,
                     {%- when "page" -%}
-                    {%- assign pages = layout.items | sort: "title" | reverse -%}
-                    "page": `{%- for p in pages -%}
-                    <tr>
-                        <td>
-                            <i class="fa fa-book"></i>
-                        </td>
-                        <td>
-                            {%- if p.hyde.date -%}
-                                {{ p.hyde.date }}
-                            {%- endif -%}
-                        </td>
-                        <td>
-                            <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
-                        </td>
-                    </tr>
-                    {%- endfor -%}`,
+                        {%- assign dated_pages = layout.items | where_exp: "p", "p.hyde.date" | reverse -%}
+                        {%- assign undated_pages = layout.items | where_exp: "p", "p.hyde.date == nil" -%}
+                        "page": `{%- for p in dated_pages -%}
+                        <tr>
+                            <td>
+                                <i class="fa fa-book"></i>
+                            </td>
+                            <td>
+                                {{ p.hyde.date | date: "%Y %b %d" }}
+                            </td>
+                            <td>
+                                <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
+                            </td>
+                        </tr>
+                        {%- endfor -%}
+                        {%- for p in undated_pages -%}
+                        <tr>
+                            <td>
+                                <i class="fa fa-book"></i>
+                            </td>
+                            <td colspan='2'>
+                                <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
+                            </td>
+                        </tr>
+                        {%- endfor -%}`,
                     {%- when "eng_index" -%}
                         {%- assign subdocs = layout.items | sort: "title" -%}
                         "eng_index":`{%- for p in subdocs -%}
@@ -381,7 +390,7 @@ window.hyde_index = {
                                 <td>
                                     <i class="fa fa-folder"></i>
                                 </td>
-                                <td>
+                                <td colspan='2'>
                                     <a href="{{ BASE_PATH }}{{ p.url }}">{{ p.title | markdownify | replace: "`", "&#96;" }}</a>
                                 </td>
                             </tr>
@@ -393,10 +402,10 @@ window.hyde_index = {
 };
 
 window.hyde_tabs = `
-    {% assign tabbed = site.pages | where_exp:"p", "p.hyde.tab" | sort:"tab" %}
-    {% for p in tabbed %}
+    {%- assign tabbed = site.pages | where_exp:"p", "p.hyde.tab" | sort: "hyde.tab" -%}
+    {%- for p in tabbed -%}
         <a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{{ p.hyde.tab }}</a>
-    {% endfor %}
+    {%- endfor -%}
     `;
 
 {%-comment-%}

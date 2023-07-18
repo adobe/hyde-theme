@@ -14,28 +14,9 @@
 }
 
 .site-title {
-  /*
-  font-size: 26px;
-  font-weight: 300;
-  line-height: 56px;
-  letter-spacing: -1px;
-  margin-bottom: 0;
   float: left;
-  */
-
-  float: left;
-  width: 50%;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  width: $header-title-width;
   min-height: $header-height;
-
-  /*
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  */
 
   @if variable-exists(header-image) {
     background-image: $header-image;
@@ -47,7 +28,6 @@
 .site-nav {
   float: right;
   line-height: $header-height;
-  margin-top: 3px;
 
   .menu-icon {
     display: none;
@@ -59,7 +39,7 @@
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
-      margin-right: 20px;
+      margin-right: 1em;
     }
   }
 
@@ -239,7 +219,7 @@
  * Page content
  */
 .page-content {
-  padding: calc($spacing-unit / 2) 0;
+  padding: ($spacing-unit / 2) 0;
 }
 
 .post-list {
@@ -265,7 +245,7 @@
  * Posts
  */
 .post-header {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
 
   > .code {
     font-family: $code-font-family;
@@ -335,7 +315,7 @@ table {
 }
 
 .indent {
-  margin-left: calc($spacing-unit / 2);
+  margin-left: $spacing-unit / 2;
 }
 
 /**
@@ -343,8 +323,8 @@ table {
  * every row.
  */
 .definition-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
+  margin-left: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -405,8 +385,8 @@ table {
  * associated elements.
  */
 .associated-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
+  margin-left: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -446,7 +426,7 @@ table {
  * indent.
  */
 .declaration-table {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -482,7 +462,7 @@ table {
  * State transition tables, like the one in the transaction docs.
  */
 .state-transition {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -506,7 +486,7 @@ table {
  * Parameter Notes, like the one in the collection connect_insert docs.
  */
 .parameter-table {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -580,8 +560,8 @@ span.annotation {
  * horizontal lines.
  */
 .parameter-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
+  margin-left: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 2;
   width: 100%;
 
   > tbody {
@@ -614,7 +594,7 @@ span.annotation {
  * every row.
  */
 .example-table {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -779,7 +759,7 @@ span.annotation {
   margin: 0;
 
   //1em;
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: $spacing-unit / 2;
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: 1px solid #f0f000;

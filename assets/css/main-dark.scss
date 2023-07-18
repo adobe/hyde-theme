@@ -11,7 +11,7 @@
 $background-color: #1e1e1e;
 $base-font-family: "Source Serif Pro",serif;
 $base-font-size: 12pt;
-$base-font-weight: 400;
+$base-font-weight: 400 !default;
 $base-line-height: 1.25;
 $code-font-family: "Source Code Pro",monospace;
 $content-width: 1000px;
@@ -44,6 +44,7 @@ $embedded-code-text-color: $text-color;
 $footer-link-color: $site-grey-color;
 $footer-text-color: $site-grey-color;
 $header-height: $base-font-size * 2;
+$header-title-width: 325px;
 $icon-fill-color: $site-grey-color;
 $icon-hover-primary-color: $hyde-primary;
 $icon-hover-text-color: $hyde-primary;
