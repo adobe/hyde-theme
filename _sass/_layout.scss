@@ -219,7 +219,7 @@
  * Page content
  */
 .page-content {
-  padding: ($spacing-unit / 2) 0;
+  padding: (calc($spacing-unit / 2)) 0;
 }
 
 .post-list {
@@ -245,7 +245,7 @@
  * Posts
  */
 .post-header {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
 
   > .code {
     font-family: $code-font-family;
@@ -315,7 +315,7 @@ table {
 }
 
 .indent {
-  margin-left: $spacing-unit / 2;
+  margin-left: calc($spacing-unit / 2);
 }
 
 /**
@@ -323,8 +323,8 @@ table {
  * every row.
  */
 .definition-table {
-  margin-left: $spacing-unit / 2;
-  margin-bottom: $spacing-unit / 2;
+  margin-left: calc($spacing-unit / 2);
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -385,8 +385,8 @@ table {
  * associated elements.
  */
 .associated-table {
-  margin-left: $spacing-unit / 2;
-  margin-bottom: $spacing-unit / 2;
+  margin-left: calc($spacing-unit / 2);
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -426,7 +426,7 @@ table {
  * indent.
  */
 .declaration-table {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -462,7 +462,7 @@ table {
  * State transition tables, like the one in the transaction docs.
  */
 .state-transition {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -486,7 +486,7 @@ table {
  * Parameter Notes, like the one in the collection connect_insert docs.
  */
 .parameter-table {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -560,8 +560,8 @@ span.annotation {
  * horizontal lines.
  */
 .parameter-table {
-  margin-left: $spacing-unit / 2;
-  margin-bottom: $spacing-unit / 2;
+  margin-left: calc($spacing-unit / 2);
+  margin-bottom: calc($spacing-unit / 2);
   width: 100%;
 
   > tbody {
@@ -594,7 +594,7 @@ span.annotation {
  * every row.
  */
 .example-table {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
   border-bottom: 1px solid $table-separator-color;
   border-top: 1px solid $table-separator-color;
   width: 100%;
@@ -759,7 +759,7 @@ span.annotation {
   margin: 0;
 
   //1em;
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc($spacing-unit / 2);
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: 1px solid #f0f000;

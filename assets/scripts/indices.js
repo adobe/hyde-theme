@@ -105,8 +105,6 @@ window.hyde_siblings = {
                                     {% endfor %}
                                 ],
                             {% endfor %}
-                        {%- else -%}
-                            "nothing!",
                     {%- endcase -%}
             {% endfor %}
         },
