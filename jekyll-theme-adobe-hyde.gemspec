@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-adobe-hyde"
-  spec.version       = "2.0.0"
-  spec.authors       = ["Sean Parent"]
-  spec.email         = ["sparent@adobe.com"]
+  spec.version       = "2.0.1"
+  spec.authors       = ["Sean Parent", "Foster Brereton"]
+  spec.email         = ["sparent@adobe.com", "fbrereto@adobe.com"]
 
   spec.summary       = "Jekyll theme to use with Hyde C++ documentation system."
   spec.homepage      = "https://github.com/adobe/hyde-theme"
@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README)!i) }
 
-  spec.add_runtime_dependency "jekyll", "~> 3.8"
+  spec.add_runtime_dependency "jekyll", "~> 4.3"
   spec.add_runtime_dependency 'jekyll-seo-tag', '~> 2.0'
 
   spec.add_development_dependency "bundler", ">= 2.2.33"

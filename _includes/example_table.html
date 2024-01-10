@@ -1,3 +1,7 @@
+{% comment %}
+    How does this play with external_examples.html?
+{% endcomment %}
+
 {% unless examples %}
     {% assign this_url = page.url | relative_url %}
     {% assign examples = site.pages | where_exp:"p","p.example" %}
@@ -5,6 +9,8 @@
     {% assign examples = examples | where_exp:"p","p.url != this_url" %}
     {% assign examples = examples | sort: 'scope' %}
 {% endunless %}
+
+{% if examples != empty %}
 
 <h3>Examples</h3>
 
@@ -31,3 +37,5 @@
     </tr>
   {% endfor %}
 </table>
+
+{% endif %}
