@@ -29,7 +29,7 @@ The inspiration for the layout comes from [cppreference](https://en.cppreference
 If using GitHub Pages or the [jekyll-remote-theme plugin](https://github.com/benbalter/jekyll-remote-theme), specify the theme as a remote theme in your `_config.yml` file:
 
 ```
-remote_theme: adobe/hyde-theme@v1.0.0
+remote_theme: adobe/hyde-theme@v2.0.2
 ```
 
 It is strongly recommended that you use a version tag to avoid having an updated version of the theme break your site.
@@ -60,11 +60,16 @@ Or install it yourself as:
 
 ### Adding a Header Image
 
-To add a header image in the `_config.yml` add
+The following configuration options can be used in the `_config.yml` file
 
 ```yaml
 adobe_hyde:
+    # The header image to use on the site
     header_image: <relative url of image>
+    # The source url root for the documented code, i.e. `https://github.com/<org>/<repo>/blob/main`
+    source_root: <source url root>
+    # The path root for the documented code, corresponding to the `hyde --hyde-yaml-dir=` option, i.e. `/includes` if `hyde --hyde-yaml-dir=./includes`
+    hyde_yaml_dir: <hyde yaml dir>
 ```
 
 ### Customizing the Theme
