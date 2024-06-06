@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-adobe-hyde"
-  spec.version       = "2.0.1"
+  spec.version       = "2.0.2"
   spec.authors       = ["Sean Parent", "Foster Brereton"]
   spec.email         = ["sparent@adobe.com", "fbrereto@adobe.com"]
 

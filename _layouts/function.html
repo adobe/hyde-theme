@@ -6,7 +6,7 @@ layout: default
         <table width="100%">
             <tr>
                 <td>
-                    <h1 class='code'>{{ page.title | escape }}</h1>
+                    <h1 class='code'>{{ page.hyde.namespace | join: "::" }}::{{ page.title | escape }}</h1>
                 </td>
                 <td style="text-align: right;">
                     {% include defined_in_header.html %}
