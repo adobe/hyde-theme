@@ -3,6 +3,7 @@
 ## Setup
 
 ### Install Docker
+
 If you don't already have docker installed, [install Docker](https://docs.docker.com/get-docker/).
 
 ## Updating the docker image

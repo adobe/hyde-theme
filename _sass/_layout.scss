@@ -84,12 +84,11 @@
     .page-link {
       display: block;
       padding: 5px 10px;
+      margin-left: 20px;
 
       &:not(:last-child) {
         margin-right: 0;
       }
-
-      margin-left: 20px;
     }
   }
 }
@@ -164,7 +163,8 @@
   display: block;
 }
 
-.site-footer, .main-content:after {
+.site-footer,
+.main-content:after {
   height: $footer-height;
   box-sizing: border-box;
 }
@@ -301,7 +301,7 @@
     font-size: 1.2em;
 
     @include media-query($on-laptop) {
-      font-size: 1.0em;
+      font-size: 1em;
     }
   }
 }
@@ -342,12 +342,11 @@ table {
       }
 
       > td {
+        vertical-align: top;
         > p {
           margin: 0;
           display: inline;
         }
-
-        vertical-align: top;
       }
 
       > td:not(:first-child) {
@@ -416,7 +415,8 @@ table {
         padding-right: 1.5em;
       }
 
-      > td.brief {}
+      > td.brief {
+      }
     }
   }
 }
@@ -453,7 +453,8 @@ table {
         padding-right: 1.5em;
       }
 
-      > td.defn {}
+      > td.defn {
+      }
     }
   }
 }
@@ -477,7 +478,8 @@ table {
     > tr {
       border-top: 1px solid $table-separator-color;
 
-      > td {}
+      > td {
+      }
     }
   }
 }
@@ -525,7 +527,7 @@ table {
     > tr {
       > td {
         padding-right: 0.2em;
-        line-height: 1.0em;
+        line-height: 1em;
         vertical-align: top;
       }
     }
@@ -584,7 +586,8 @@ span.annotation {
         padding-right: 1.5em;
       }
 
-      > td.defn {}
+      > td.defn {
+      }
     }
   }
 }
@@ -690,17 +693,15 @@ span.annotation {
   border-radius: 1em;
 
   @include media-query($on-palm) {
-    border-radius: .3em;
+    border-radius: 0.3em;
   }
-
 
   > .top {
     border-radius: 1em 1em 0 0;
 
     @include media-query($on-palm) {
-      border-radius: .3em .3em 0 0;
+      border-radius: 0.3em 0.3em 0 0;
     }
-
 
     > .fa {
       display: inline-block;
@@ -724,13 +725,13 @@ span.annotation {
     border-bottom: 1px solid $icon-border-color;
     font-weight: bold;
     text-align: center;
-    padding-top: .7em;
-    padding-bottom: .7em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
 
     @include media-query($on-palm) {
-      padding-top: .2em;
-      padding-bottom: .2em;
-      border-radius: 0 0 .3em .3em;
+      padding-top: 0.2em;
+      padding-bottom: 0.2em;
+      border-radius: 0 0 0.3em 0.3em;
     }
   }
 
