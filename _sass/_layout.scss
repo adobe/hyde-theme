@@ -1,10 +1,13 @@
+@use "sass:meta";
+@use "main-light";
+
 /**
  * Site header
  */
 .site-header {
-  background-color: $header-background-color;
-  border-bottom: 1px solid $header-border-color;
-  min-height: $header-height;
+  background-color: main-light.$header-background-color;
+  border-bottom: 1px solid main-light.$header-border-color;
+  min-height: main-light.$header-height;
   margin-bottom: 10px;
   padding-bottom: 14px;
   padding-top: 16px;
@@ -13,12 +16,14 @@
   position: relative;
 }
 
+$header-image: null !default;
+
 .site-title {
   float: left;
-  width: $header-title-width;
-  min-height: $header-height;
+  width: main-light.$header-title-width;
+  min-height: main-light.$header-height;
 
-  @if variable-exists(header-image) {
+  @if $header-image != null {
     background-image: $header-image;
     background-repeat: no-repeat;
     background-size: contain;
@@ -27,15 +32,15 @@
 
 .site-nav {
   float: right;
-  line-height: $header-height;
+  line-height: main-light.$header-height;
 
   .menu-icon {
     display: none;
   }
 
   .page-link {
-    color: $site-nav-link-color;
-    line-height: $base-line-height;
+    color: main-light.$site-nav-link-color;
+    line-height: main-light.$base-line-height;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
@@ -43,67 +48,67 @@
     }
   }
 
-  @include media-query($on-palm) {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: $site-menu-background-color;
-    border: 1px solid $site-menu-border-color;
-    border-radius: 5px;
-    text-align: right;
+  // @include media-query($on-palm) {
+  //   position: absolute;
+  //   top: 12px;
+  //   right: 12px;
+  //   background-color: $site-menu-background-color;
+  //   border: 1px solid $site-menu-border-color;
+  //   border-radius: 5px;
+  //   text-align: right;
 
-    .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
+  //   .menu-icon {
+  //     display: block;
+  //     float: right;
+  //     width: 36px;
+  //     height: 26px;
+  //     line-height: 0;
+  //     padding-top: 10px;
+  //     text-align: center;
 
-      > svg {
-        width: 18px;
-        height: 15px;
+  //     > svg {
+  //       width: 18px;
+  //       height: 15px;
 
-        path {
-          fill: $site-menu-fill-color;
-        }
-      }
-    }
+  //       path {
+  //         fill: $site-menu-fill-color;
+  //       }
+  //     }
+  //   }
 
-    .trigger {
-      clear: both;
-      display: none;
-    }
+  //   .trigger {
+  //     clear: both;
+  //     display: none;
+  //   }
 
-    &:hover .trigger {
-      display: block;
-      padding-bottom: 5px;
-    }
+  //   &:hover .trigger {
+  //     display: block;
+  //     padding-bottom: 5px;
+  //   }
 
-    .page-link {
-      display: block;
-      padding: 5px 10px;
-      margin-left: 20px;
+  //   .page-link {
+  //     display: block;
+  //     padding: 5px 10px;
+  //     margin-left: 20px;
 
-      &:not(:last-child) {
-        margin-right: 0;
-      }
-    }
-  }
+  //     &:not(:last-child) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 }
 
 /**
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $footer-border-color;
+  border-top: 1px solid main-light.$footer-border-color;
   padding: 20px 0;
-  background-color: $footer-background-color;
+  background-color: main-light.$footer-background-color;
 }
 
 .footer-heading {
-  font-size: $base-font-size;
+  font-size: main-light.$base-font-size;
   margin-bottom: 0;
 }
 
@@ -114,15 +119,15 @@
 }
 
 .footer-table {
-  font-size: $small-font-size;
-  color: $footer-text-color;
+  font-size: main-light.$small-font-size;
+  color: main-light.$footer-text-color;
   width: 100%;
 
   > tbody {
     > tr {
       > td {
         > a {
-          color: $footer-link-color;
+          color: main-light.$footer-link-color;
         }
       }
     }
@@ -154,8 +159,8 @@
 // and push to the end of content otherwise.
 .main-content {
   min-height: 100%;
-  margin-bottom: -$footer-height;
-  background-color: $background-color;
+  margin-bottom: -(main-light.$footer-height);
+  background-color: main-light.$background-color;
 }
 
 .main-content:after {
@@ -165,7 +170,7 @@
 
 .site-footer,
 .main-content:after {
-  height: $footer-height;
+  height: main-light.$footer-height;
   box-sizing: border-box;
 }
 
@@ -177,9 +182,9 @@
   width: 100%;
   box-sizing: border-box;
 
-  @include media-query($on-palm) {
-    flex-direction: column;
-  }
+  // @include media-query($on-palm) {
+  //   flex-direction: column;
+  // }
 }
 
 .top-bar-breadcrumb {
@@ -219,7 +224,7 @@
  * Page content
  */
 .page-content {
-  padding: (calc($spacing-unit / 2)) 0;
+  padding: (calc(main-light.$spacing-unit / 2)) 0;
 }
 
 .post-list {
@@ -227,13 +232,13 @@
   list-style: none;
 
   > li {
-    margin-bottom: $spacing-unit;
+    margin-bottom: main-light.$spacing-unit;
   }
 }
 
 .post-meta {
-  font-size: $small-font-size;
-  color: $post-meta-text-color;
+  font-size: main-light.$small-font-size;
+  color: main-light.$post-meta-text-color;
 }
 
 .post-link {
@@ -245,64 +250,64 @@
  * Posts
  */
 .post-header {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
 
   > .code {
-    font-family: $code-font-family;
+    font-family: main-light.$code-font-family;
   }
 }
 
 .post-title {
   font-size: 2.5em;
 
-  @include media-query($on-laptop) {
-    font-size: 2.3em;
-  }
+  // @include media-query($on-laptop) {
+  //   font-size: 2.3em;
+  // }
 }
 
 .post-content {
-  margin-bottom: $spacing-unit;
+  margin-bottom: main-light.$spacing-unit;
 
   h1 {
     font-size: 2em;
     margin-top: 30px;
     margin-bottom: 10px;
 
-    @include media-query($on-laptop) {
-      font-size: 1.8em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.8em;
+    // }
   }
 
   h2 {
     font-size: 1.8em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.6em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.6em;
+    // }
   }
 
   h3 {
     font-size: 1.6em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.4em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.4em;
+    // }
   }
 
   h4 {
     font-size: 1.4em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.2em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.2em;
+    // }
   }
 
   h5 {
     font-size: 1.2em;
 
-    @include media-query($on-laptop) {
-      font-size: 1em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1em;
+    // }
   }
 }
 
@@ -315,7 +320,7 @@ table {
 }
 
 .indent {
-  margin-left: calc($spacing-unit / 2);
+  margin-left: calc(main-light.$spacing-unit / 2);
 }
 
 /**
@@ -323,15 +328,15 @@ table {
  * every row.
  */
 .definition-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-left: calc(main-light.$spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
 
       > th {
         text-align: left;
@@ -354,19 +359,19 @@ table {
       }
 
       > td.type {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
 
       > td.field {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
 
       > td.decl {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
@@ -384,15 +389,15 @@ table {
  * associated elements.
  */
 .associated-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-left: calc(main-light.$spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
 
       > th {
         text-align: left;
@@ -408,7 +413,7 @@ table {
       > td.name {
         text-indent: -3em;
         padding-left: 3em;
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
 
         // white-space: nowrap;
         vertical-align: top;
@@ -426,14 +431,14 @@ table {
  * indent.
  */
 .declaration-table {
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
 
       > th {
         text-align: left;
@@ -447,7 +452,7 @@ table {
       }
 
       > td.decl {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
         padding-right: 1.5em;
@@ -463,20 +468,20 @@ table {
  * State transition tables, like the one in the transaction docs.
  */
 .state-transition {
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > thead {
     > tr {
-      border-bottom: 1px solid $table-separator-color;
+      border-bottom: 1px solid main-light.$table-separator-color;
     }
   }
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
 
       > td {
       }
@@ -488,14 +493,14 @@ table {
  * Parameter Notes, like the one in the collection connect_insert docs.
  */
 .parameter-table {
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > thead {
     > tr {
-      border-bottom: 1px solid $table-separator-color;
+      border-bottom: 1px solid main-light.$table-separator-color;
 
       > th {
         font-weight: bold;
@@ -506,7 +511,7 @@ table {
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
       border-spacing: 0.1em;
 
       > td {
@@ -562,8 +567,8 @@ span.annotation {
  * horizontal lines.
  */
 .parameter-table {
-  margin-left: calc($spacing-unit / 2);
-  margin-bottom: calc($spacing-unit / 2);
+  margin-left: calc(main-light.$spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
   width: 100%;
 
   > tbody {
@@ -582,7 +587,7 @@ span.annotation {
       }
 
       > td.decl {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         padding-right: 1.5em;
       }
 
@@ -597,14 +602,14 @@ span.annotation {
  * every row.
  */
 .example-table {
-  margin-bottom: calc($spacing-unit / 2);
-  border-bottom: 1px solid $table-separator-color;
-  border-top: 1px solid $table-separator-color;
+  margin-bottom: calc(main-light.$spacing-unit / 2);
+  border-bottom: 1px solid main-light.$table-separator-color;
+  border-top: 1px solid main-light.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid $table-separator-color;
+      border-top: 1px solid main-light.$table-separator-color;
 
       > th {
         text-align: left;
@@ -620,11 +625,11 @@ span.annotation {
       }
 
       > td.decl_func {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
       }
 
       > td.decl_link {
-        font-family: $code-font-family;
+        font-family: main-light.$code-font-family;
         padding-left: 1.5em;
       }
 
@@ -682,26 +687,26 @@ span.annotation {
     }
   }
 
-  @include media-query($on-palm) {
-    border-spacing: 1em 0;
-  }
+  // @include media-query($on-palm) {
+  //   border-spacing: 1em 0;
+  // }
 }
 
 .icon-box {
-  background: $icon-primary-color;
-  color: $icon-text-color;
+  background: main-light.$icon-primary-color;
+  color: main-light.$icon-text-color;
   border-radius: 1em;
 
-  @include media-query($on-palm) {
-    border-radius: 0.3em;
-  }
+  // @include media-query($on-palm) {
+  //   border-radius: 0.3em;
+  // }
 
   > .top {
     border-radius: 1em 1em 0 0;
 
-    @include media-query($on-palm) {
-      border-radius: 0.3em 0.3em 0 0;
-    }
+    // @include media-query($on-palm) {
+    //   border-radius: 0.3em 0.3em 0 0;
+    // }
 
     > .fa {
       display: inline-block;
@@ -711,39 +716,39 @@ span.annotation {
       font-size: 5em;
       vertical-align: middle;
 
-      @include media-query($on-palm) {
-        font-size: 2em;
-      }
+      // @include media-query($on-palm) {
+      //   font-size: 2em;
+      // }
     }
   }
 
   > .bottom {
-    background: $icon-secondary-color;
+    background: main-light.$icon-secondary-color;
     border-radius: 0 0 1em 1em;
-    border-left: 1px solid $icon-border-color;
-    border-right: 1px solid $icon-border-color;
-    border-bottom: 1px solid $icon-border-color;
+    border-left: 1px solid main-light.$icon-border-color;
+    border-right: 1px solid main-light.$icon-border-color;
+    border-bottom: 1px solid main-light.$icon-border-color;
     font-weight: bold;
     text-align: center;
     padding-top: 0.7em;
     padding-bottom: 0.7em;
 
-    @include media-query($on-palm) {
-      padding-top: 0.2em;
-      padding-bottom: 0.2em;
-      border-radius: 0 0 0.3em 0.3em;
-    }
+    // @include media-query($on-palm) {
+    //   padding-top: 0.2em;
+    //   padding-bottom: 0.2em;
+    //   border-radius: 0 0 0.3em 0.3em;
+    // }
   }
 
   &:hover {
-    background: $icon-hover-primary-color;
-    color: $icon-hover-text-color;
+    background: main-light.$icon-hover-primary-color;
+    color: main-light.$icon-hover-text-color;
 
     > .bottom {
-      background: $icon-hover-secondary-color;
-      border-left: 1px solid $icon-hover-border-color;
-      border-right: 1px solid $icon-hover-border-color;
-      border-bottom: 1px solid $icon-hover-border-color;
+      background: main-light.$icon-hover-secondary-color;
+      border-left: 1px solid main-light.$icon-hover-border-color;
+      border-right: 1px solid main-light.$icon-hover-border-color;
+      border-bottom: 1px solid main-light.$icon-hover-border-color;
     }
   }
 }
@@ -760,7 +765,7 @@ span.annotation {
   margin: 0;
 
   //1em;
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: 1px solid #f0f000;

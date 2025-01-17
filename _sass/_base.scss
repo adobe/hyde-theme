@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "main-light";
+
 /**
  * Reset some basic elements
  */
@@ -20,9 +23,9 @@ html, body {
  * Basic styling
  */
 body {
-  font: #{$base-font-weight} #{$base-font-size}/#{$base-line-height} $base-font-family;
-  color: $text-color;
-  background-color: $background-color;
+  font: #{main-light.$base-font-weight} #{main-light.$base-font-size}/#{main-light.$base-line-height} main-light.$base-font-family;
+  color: main-light.$text-color;
+  background-color: main-light.$background-color;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
   -moz-font-feature-settings: "kern" 1;
@@ -33,7 +36,7 @@ body {
 
 pre, code {
   // font: $base-font-weight #{$base-font-size}/#{$base-line-height} $code-font-family;
-  font-family: $code-font-family;
+  font-family: main-light.$code-font-family;
 }
 
 /**
@@ -42,7 +45,7 @@ pre, code {
 h1, h2, h3, h4, h5, h6, blockquote,
 ul, ol, dl, p, figure
 %vertical-rhythm {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: calc(main-light.$spacing-unit / 2);
 }
 
 /**
@@ -61,14 +64,14 @@ figure > img {
 }
 
 figcaption {
-  font-size: $small-font-size;
+  font-size: main-light.$small-font-size;
 }
 
 /**
  * Lists
  */
 ul, ol {
-  margin-left: $spacing-unit;
+  margin-left: main-light.$spacing-unit;
 }
 
 li {
@@ -82,15 +85,15 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-family: $header-font-family;
-  font-weight: $base-font-weight;
+  font-family: main-light.$header-font-family;
+  font-weight: main-light.$base-font-weight;
 }
 
 /**
  * Links
  */
 a {
-  color: $link-color;
+  color: main-light.$link-color;
   text-decoration: none;
 }
 
@@ -102,10 +105,10 @@ a:hover {
  * Blockquotes
  */
 blockquote {
-  color: $quote-text-color;
-  background-color: $quote-background-color;
-  border-left: 4px solid $quote-accent-color;
-  padding-left: calc($spacing-unit / 2);
+  color: main-light.$quote-text-color;
+  background-color: main-light.$quote-background-color;
+  border-left: 4px solid main-light.$quote-accent-color;
+  padding-left: calc(main-light.$spacing-unit / 2);
   padding-top: 8px;
   padding-bottom: 8px;
   padding-right: 8px;
@@ -142,21 +145,21 @@ pre {
 }
 
 .wrapper {
-  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width: unquote("#{$content-width} - #{$spacing-unit} * 2");
+  max-width: -webkit-calc(#{main-light.$content-width} - (#{main-light.$spacing-unit} * 2));
+  max-width: string.unquote("#{main-light.$content-width} - #{main-light.$spacing-unit} * 2");
   margin-right: auto;
   margin-left: auto;
-  padding-right: $spacing-unit;
-  padding-left: $spacing-unit;
+  padding-right: main-light.$spacing-unit;
+  padding-left: main-light.$spacing-unit;
 
   @extend %clearfix;
 
-  @include media-query($on-laptop) {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    max-width: unquote("#{$content-width} - #{$spacing-unit}");
-    padding-right: calc($spacing-unit / 2);
-    padding-left: calc($spacing-unit / 2);
-  }
+  // @include media-query($on-laptop) {
+  //   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+  //   max-width: unquote("#{$content-width} - #{$spacing-unit}");
+  //   padding-right: calc($spacing-unit / 2);
+  //   padding-left: calc($spacing-unit / 2);
+  // }
 }
 
 /**
@@ -181,7 +184,7 @@ pre {
     vertical-align: middle;
 
     path {
-      fill: $icon-fill-color;
+      fill: main-light.$icon-fill-color;
     }
   }
 }

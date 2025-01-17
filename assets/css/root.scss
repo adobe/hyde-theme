@@ -8,7 +8,7 @@
 // file set. Finally, we derive the dependent variables from the primaries, taking into account
 // any user overrides that have been made.
 
-$background-color: white;
+/* $background-color: white;
 $base-font-family: "Source Serif Pro",serif;
 $base-font-size: 12pt;
 $base-font-weight: 400;
@@ -71,4 +71,14 @@ $header-image: url({{ site.adobe_hyde.header_image | prepend: site.baseurl }});
     "overrides-light",
     "main",
     "syntax-highlighting-light"
-;
+; */
+
+@use "sass:meta";
+// @include meta.load-css("main");
+
+@include meta.load-css("base");
+@include meta.load-css("layout", $with: (
+    {% if site.adobe_hyde.header_image %}
+    "header-image": url({{ site.adobe_hyde.header_image | prepend: site.baseurl }})
+    {% endif %}
+));
