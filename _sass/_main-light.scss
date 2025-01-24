@@ -24,10 +24,10 @@ $header-border-color: transparent;
 $header-font-family: "Source Sans Pro",sans-serif;
 $highlight-accent-color: #dbdbdb;
 $highlight-background-color: #f0f0f0;
-$hyde-primary: blue;
+$hyde-primary: blue !default;
 $icon-hover-secondary-color: white;
 $icon-secondary-color: white;
-$link-color: $hyde-primary;
+$link-color: $hyde-primary !default;
 $on-laptop: 800px;
 $on-palm: 600px;
 $site-grey-color: #949597;
@@ -62,13 +62,3 @@ $site-menu-fill-color: $site-grey-color-dark;
 $site-nav-link-color: $hyde-primary;
 $small-font-size: $base-font-size * 0.875;
 $table-separator-color: $site-grey-color-light;
-
-/* {% if site.adobe_hyde.header_image %}
-$header-image: url({{ site.adobe_hyde.header_image | prepend: site.baseurl }});
-{% endif %} */
-
-/* @use "sass:color";
-@use "overrides";
-@use "overrides-light";
-@use "main";
-@use "syntax-highlighting-light"; */

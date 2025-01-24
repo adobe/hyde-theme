@@ -1,13 +1,13 @@
 @use "sass:meta";
-@use "main-light";
+@use "main";
 
 /**
  * Site header
  */
 .site-header {
-  background-color: main-light.$header-background-color;
-  border-bottom: 1px solid main-light.$header-border-color;
-  min-height: main-light.$header-height;
+  background-color: main.$header-background-color;
+  border-bottom: 1px solid main.$header-border-color;
+  min-height: main.$header-height;
   margin-bottom: 10px;
   padding-bottom: 14px;
   padding-top: 16px;
@@ -20,8 +20,8 @@ $header-image: null !default;
 
 .site-title {
   float: left;
-  width: main-light.$header-title-width;
-  min-height: main-light.$header-height;
+  width: main.$header-title-width;
+  min-height: main.$header-height;
 
   @if $header-image != null {
     background-image: $header-image;
@@ -32,15 +32,15 @@ $header-image: null !default;
 
 .site-nav {
   float: right;
-  line-height: main-light.$header-height;
+  line-height: main.$header-height;
 
   .menu-icon {
     display: none;
   }
 
   .page-link {
-    color: main-light.$site-nav-link-color;
-    line-height: main-light.$base-line-height;
+    color: main.$site-nav-link-color;
+    line-height: main.$base-line-height;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
@@ -102,13 +102,13 @@ $header-image: null !default;
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid main-light.$footer-border-color;
+  border-top: 1px solid main.$footer-border-color;
   padding: 20px 0;
-  background-color: main-light.$footer-background-color;
+  background-color: main.$footer-background-color;
 }
 
 .footer-heading {
-  font-size: main-light.$base-font-size;
+  font-size: main.$base-font-size;
   margin-bottom: 0;
 }
 
@@ -119,15 +119,15 @@ $header-image: null !default;
 }
 
 .footer-table {
-  font-size: main-light.$small-font-size;
-  color: main-light.$footer-text-color;
+  font-size: main.$small-font-size;
+  color: main.$footer-text-color;
   width: 100%;
 
   > tbody {
     > tr {
       > td {
         > a {
-          color: main-light.$footer-link-color;
+          color: main.$footer-link-color;
         }
       }
     }
@@ -159,8 +159,8 @@ $header-image: null !default;
 // and push to the end of content otherwise.
 .main-content {
   min-height: 100%;
-  margin-bottom: -(main-light.$footer-height);
-  background-color: main-light.$background-color;
+  margin-bottom: -(main.$footer-height);
+  background-color: main.$background-color;
 }
 
 .main-content:after {
@@ -170,7 +170,7 @@ $header-image: null !default;
 
 .site-footer,
 .main-content:after {
-  height: main-light.$footer-height;
+  height: main.$footer-height;
   box-sizing: border-box;
 }
 
@@ -224,7 +224,7 @@ $header-image: null !default;
  * Page content
  */
 .page-content {
-  padding: (calc(main-light.$spacing-unit / 2)) 0;
+  padding: (calc(main.$spacing-unit / 2)) 0;
 }
 
 .post-list {
@@ -232,13 +232,13 @@ $header-image: null !default;
   list-style: none;
 
   > li {
-    margin-bottom: main-light.$spacing-unit;
+    margin-bottom: main.$spacing-unit;
   }
 }
 
 .post-meta {
-  font-size: main-light.$small-font-size;
-  color: main-light.$post-meta-text-color;
+  font-size: main.$small-font-size;
+  color: main.$post-meta-text-color;
 }
 
 .post-link {
@@ -250,10 +250,10 @@ $header-image: null !default;
  * Posts
  */
 .post-header {
-  margin-bottom: calc(main-light.$spacing-unit / 2);
+  margin-bottom: calc(main.$spacing-unit / 2);
 
   > .code {
-    font-family: main-light.$code-font-family;
+    font-family: main.$code-font-family;
   }
 }
 
@@ -266,7 +266,7 @@ $header-image: null !default;
 }
 
 .post-content {
-  margin-bottom: main-light.$spacing-unit;
+  margin-bottom: main.$spacing-unit;
 
   h1 {
     font-size: 2em;
@@ -320,7 +320,7 @@ table {
 }
 
 .indent {
-  margin-left: calc(main-light.$spacing-unit / 2);
+  margin-left: calc(main.$spacing-unit / 2);
 }
 
 /**
@@ -328,15 +328,15 @@ table {
  * every row.
  */
 .definition-table {
-  margin-left: calc(main-light.$spacing-unit / 2);
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-left: calc(main.$spacing-unit / 2);
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
 
       > th {
         text-align: left;
@@ -359,19 +359,19 @@ table {
       }
 
       > td.type {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
 
       > td.field {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
 
       > td.decl {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
       }
@@ -389,15 +389,15 @@ table {
  * associated elements.
  */
 .associated-table {
-  margin-left: calc(main-light.$spacing-unit / 2);
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-left: calc(main.$spacing-unit / 2);
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
 
       > th {
         text-align: left;
@@ -413,7 +413,7 @@ table {
       > td.name {
         text-indent: -3em;
         padding-left: 3em;
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
 
         // white-space: nowrap;
         vertical-align: top;
@@ -431,14 +431,14 @@ table {
  * indent.
  */
 .declaration-table {
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
 
       > th {
         text-align: left;
@@ -452,7 +452,7 @@ table {
       }
 
       > td.decl {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         white-space: nowrap;
         vertical-align: top;
         padding-right: 1.5em;
@@ -468,20 +468,20 @@ table {
  * State transition tables, like the one in the transaction docs.
  */
 .state-transition {
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > thead {
     > tr {
-      border-bottom: 1px solid main-light.$table-separator-color;
+      border-bottom: 1px solid main.$table-separator-color;
     }
   }
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
 
       > td {
       }
@@ -493,14 +493,14 @@ table {
  * Parameter Notes, like the one in the collection connect_insert docs.
  */
 .parameter-table {
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > thead {
     > tr {
-      border-bottom: 1px solid main-light.$table-separator-color;
+      border-bottom: 1px solid main.$table-separator-color;
 
       > th {
         font-weight: bold;
@@ -511,7 +511,7 @@ table {
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
       border-spacing: 0.1em;
 
       > td {
@@ -567,8 +567,8 @@ span.annotation {
  * horizontal lines.
  */
 .parameter-table {
-  margin-left: calc(main-light.$spacing-unit / 2);
-  margin-bottom: calc(main-light.$spacing-unit / 2);
+  margin-left: calc(main.$spacing-unit / 2);
+  margin-bottom: calc(main.$spacing-unit / 2);
   width: 100%;
 
   > tbody {
@@ -587,7 +587,7 @@ span.annotation {
       }
 
       > td.decl {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         padding-right: 1.5em;
       }
 
@@ -602,14 +602,14 @@ span.annotation {
  * every row.
  */
 .example-table {
-  margin-bottom: calc(main-light.$spacing-unit / 2);
-  border-bottom: 1px solid main-light.$table-separator-color;
-  border-top: 1px solid main-light.$table-separator-color;
+  margin-bottom: calc(main.$spacing-unit / 2);
+  border-bottom: 1px solid main.$table-separator-color;
+  border-top: 1px solid main.$table-separator-color;
   width: 100%;
 
   > tbody {
     > tr {
-      border-top: 1px solid main-light.$table-separator-color;
+      border-top: 1px solid main.$table-separator-color;
 
       > th {
         text-align: left;
@@ -625,11 +625,11 @@ span.annotation {
       }
 
       > td.decl_func {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
       }
 
       > td.decl_link {
-        font-family: main-light.$code-font-family;
+        font-family: main.$code-font-family;
         padding-left: 1.5em;
       }
 
@@ -693,8 +693,8 @@ span.annotation {
 }
 
 .icon-box {
-  background: main-light.$icon-primary-color;
-  color: main-light.$icon-text-color;
+  background: main.$icon-primary-color;
+  color: main.$icon-text-color;
   border-radius: 1em;
 
   // @include media-query($on-palm) {
@@ -723,11 +723,11 @@ span.annotation {
   }
 
   > .bottom {
-    background: main-light.$icon-secondary-color;
+    background: main.$icon-secondary-color;
     border-radius: 0 0 1em 1em;
-    border-left: 1px solid main-light.$icon-border-color;
-    border-right: 1px solid main-light.$icon-border-color;
-    border-bottom: 1px solid main-light.$icon-border-color;
+    border-left: 1px solid main.$icon-border-color;
+    border-right: 1px solid main.$icon-border-color;
+    border-bottom: 1px solid main.$icon-border-color;
     font-weight: bold;
     text-align: center;
     padding-top: 0.7em;
@@ -741,14 +741,14 @@ span.annotation {
   }
 
   &:hover {
-    background: main-light.$icon-hover-primary-color;
-    color: main-light.$icon-hover-text-color;
+    background: main.$icon-hover-primary-color;
+    color: main.$icon-hover-text-color;
 
     > .bottom {
-      background: main-light.$icon-hover-secondary-color;
-      border-left: 1px solid main-light.$icon-hover-border-color;
-      border-right: 1px solid main-light.$icon-hover-border-color;
-      border-bottom: 1px solid main-light.$icon-hover-border-color;
+      background: main.$icon-hover-secondary-color;
+      border-left: 1px solid main.$icon-hover-border-color;
+      border-right: 1px solid main.$icon-hover-border-color;
+      border-bottom: 1px solid main.$icon-hover-border-color;
     }
   }
 }
@@ -765,7 +765,7 @@ span.annotation {
   margin: 0;
 
   //1em;
-  margin-bottom: calc(main-light.$spacing-unit / 2);
+  margin-bottom: calc(main.$spacing-unit / 2);
   padding: 0.5em 1em;
   border-radius: 0.5em;
   border: 1px solid #f0f000;
