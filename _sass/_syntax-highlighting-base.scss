@@ -1,3 +1,5 @@
+@use "main-light";
+
 /**
  * Syntax highlighting styles
  */
@@ -6,9 +8,9 @@
 code.highlighter-rouge {
   padding: 0.1em 0.3em;
   font-size: 0.8em;
-  color: $inline-code-text-color;
-  background-color: $inline-code-background-color;
-  border: 1px solid $inline-code-accent-color;
+  color: main-light.$inline-code-text-color;
+  background-color: main-light.$inline-code-background-color;
+  border: 1px solid main-light.$inline-code-accent-color;
 }
 
 /* `highlighted` text in headers or links */
@@ -24,12 +26,12 @@ h1, h2, h3, h4, h5, h6, a {
 
 pre.highlight {
   .highlighter-rouge & {
-    border-left: 4px solid $embedded-code-accent-color;
+    border-left: 4px solid main-light.$embedded-code-accent-color;
     margin: 1em 0;
     overflow: auto;
     padding: 1em;
-    background-color: $embedded-code-background-color;
-    color: $embedded-code-text-color;
+    background-color: main-light.$embedded-code-background-color;
+    color: main-light.$embedded-code-text-color;
     border-radius: 3px;
   }
 }

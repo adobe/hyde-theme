@@ -66,9 +66,9 @@ The following configuration options can be used in the `_config.yml` file
 adobe_hyde:
     # The header image to use on the site
     header_image: <relative url of image>
-    # The source url root for the documented code, i.e. `https://github.com/<org>/<repo>/blob/main`
+    # The source url root for the documented code, i.e. `https://github.com/<org>/<repo>/blob/main/include`
     source_root: <source url root>
-    # The path root for the documented code, corresponding to the `hyde --hyde-yaml-dir=` option, i.e. `/includes` if `hyde --hyde-yaml-dir=./includes`
+    # The path root for the documented code, corresponding to the `hyde --hyde-yaml-dir=` option, i.e. `/include` if `hyde --hyde-yaml-dir=./include`
     hyde_yaml_dir: <hyde yaml dir>
 ```
 

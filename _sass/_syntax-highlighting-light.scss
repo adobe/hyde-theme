@@ -12,7 +12,8 @@
  *     * https://github.com/chriskempson/base16
  */
 
-@import "syntax-highlighting-base";
+@use "syntax-highlighting-base";
+@use "main-light";
 
 /*! tomorrow; https://github.com/MozMorris/tomorrow-pygments */
 
@@ -21,7 +22,7 @@
 }
 
 .highlight {
-  background: $background-color;
+  background: main-light.$background-color;
   color: #4d4d4c;
 }
 

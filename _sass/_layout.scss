@@ -1,3 +1,59 @@
+@use "sass:meta";
+
+$background-color: null !default;
+$base-font-family: null !default;
+$base-font-size: null !default;
+$base-font-weight: null !default;
+$base-line-height: null !default;
+$code-font-family: null !default;
+$content-width: null !default;
+$embedded-code-accent-color: null !default;
+$embedded-code-background-color: null !default;
+$embedded-code-text-color: null !default;
+$footer-background-color: null !default;
+$footer-border-color: null !default;
+$footer-height: null !default;
+$footer-link-color: null !default;
+$footer-text-color: null !default;
+$header-background-color: null !default;
+$header-border-color: null !default;
+$header-font-family: null !default;
+$header-height: null !default;
+$header-title-width: null !default;
+$highlight-accent-color: null !default;
+$highlight-background-color: null !default;
+$hyde-primary: null !default;
+$icon-border-color: null !default;
+$icon-fill-color: null !default;
+$icon-hover-border-color: null !default;
+$icon-hover-primary-color: null !default;
+$icon-hover-secondary-color: null !default;
+$icon-hover-text-color: null !default;
+$icon-primary-color: null !default;
+$icon-secondary-color: null !default;
+$icon-text-color: null !default;
+$inline-code-accent-color: null !default;
+$inline-code-background-color: null !default;
+$inline-code-text-color: null !default;
+$link-color: null !default;
+$on-laptop: null !default;
+$on-palm: null !default;
+$post-meta-text-color: null !default;
+$quote-accent-color: null !default;
+$quote-background-color: null !default;
+$quote-text-color: null !default;
+$site-grey-color-dark: null !default;
+$site-grey-color-light: null !default;
+$site-grey-color: null !default;
+$site-menu-background-color: null !default;
+$site-menu-border-color: null !default;
+$site-menu-fill-color: null !default;
+$site-nav-link-color: null !default;
+$small-font-size: null !default;
+$spacing-unit: null !default;
+$table-separator-color: null !default;
+$text-color: null !default;
+
 /**
  * Site header
  */
@@ -13,12 +69,14 @@
   position: relative;
 }
 
+$header-image: null !default;
+
 .site-title {
   float: left;
   width: $header-title-width;
   min-height: $header-height;
 
-  @if variable-exists(header-image) {
+  @if $header-image != null {
     background-image: $header-image;
     background-repeat: no-repeat;
     background-size: contain;
@@ -43,55 +101,54 @@
     }
   }
 
-  @include media-query($on-palm) {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: $site-menu-background-color;
-    border: 1px solid $site-menu-border-color;
-    border-radius: 5px;
-    text-align: right;
+  // @include media-query($on-palm) {
+  //   position: absolute;
+  //   top: 12px;
+  //   right: 12px;
+  //   background-color: $site-menu-background-color;
+  //   border: 1px solid $site-menu-border-color;
+  //   border-radius: 5px;
+  //   text-align: right;
 
-    .menu-icon {
-      display: block;
-      float: right;
-      width: 36px;
-      height: 26px;
-      line-height: 0;
-      padding-top: 10px;
-      text-align: center;
+  //   .menu-icon {
+  //     display: block;
+  //     float: right;
+  //     width: 36px;
+  //     height: 26px;
+  //     line-height: 0;
+  //     padding-top: 10px;
+  //     text-align: center;
 
-      > svg {
-        width: 18px;
-        height: 15px;
+  //     > svg {
+  //       width: 18px;
+  //       height: 15px;
 
-        path {
-          fill: $site-menu-fill-color;
-        }
-      }
-    }
+  //       path {
+  //         fill: $site-menu-fill-color;
+  //       }
+  //     }
+  //   }
 
-    .trigger {
-      clear: both;
-      display: none;
-    }
+  //   .trigger {
+  //     clear: both;
+  //     display: none;
+  //   }
 
-    &:hover .trigger {
-      display: block;
-      padding-bottom: 5px;
-    }
+  //   &:hover .trigger {
+  //     display: block;
+  //     padding-bottom: 5px;
+  //   }
 
-    .page-link {
-      display: block;
-      padding: 5px 10px;
+  //   .page-link {
+  //     display: block;
+  //     padding: 5px 10px;
+  //     margin-left: 20px;
 
-      &:not(:last-child) {
-        margin-right: 0;
-      }
-
-      margin-left: 20px;
-    }
-  }
+  //     &:not(:last-child) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 }
 
 /**
@@ -155,7 +212,7 @@
 // and push to the end of content otherwise.
 .main-content {
   min-height: 100%;
-  margin-bottom: -$footer-height;
+  margin-bottom: -($footer-height);
   background-color: $background-color;
 }
 
@@ -164,7 +221,8 @@
   display: block;
 }
 
-.site-footer, .main-content:after {
+.site-footer,
+.main-content:after {
   height: $footer-height;
   box-sizing: border-box;
 }
@@ -177,9 +235,9 @@
   width: 100%;
   box-sizing: border-box;
 
-  @include media-query($on-palm) {
-    flex-direction: column;
-  }
+  // @include media-query($on-palm) {
+  //   flex-direction: column;
+  // }
 }
 
 .top-bar-breadcrumb {
@@ -255,9 +313,9 @@
 .post-title {
   font-size: 2.5em;
 
-  @include media-query($on-laptop) {
-    font-size: 2.3em;
-  }
+  // @include media-query($on-laptop) {
+  //   font-size: 2.3em;
+  // }
 }
 
 .post-content {
@@ -268,41 +326,41 @@
     margin-top: 30px;
     margin-bottom: 10px;
 
-    @include media-query($on-laptop) {
-      font-size: 1.8em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.8em;
+    // }
   }
 
   h2 {
     font-size: 1.8em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.6em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.6em;
+    // }
   }
 
   h3 {
     font-size: 1.6em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.4em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.4em;
+    // }
   }
 
   h4 {
     font-size: 1.4em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.2em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1.2em;
+    // }
   }
 
   h5 {
     font-size: 1.2em;
 
-    @include media-query($on-laptop) {
-      font-size: 1.0em;
-    }
+    // @include media-query($on-laptop) {
+    //   font-size: 1em;
+    // }
   }
 }
 
@@ -342,12 +400,11 @@ table {
       }
 
       > td {
+        vertical-align: top;
         > p {
           margin: 0;
           display: inline;
         }
-
-        vertical-align: top;
       }
 
       > td:not(:first-child) {
@@ -416,7 +473,8 @@ table {
         padding-right: 1.5em;
       }
 
-      > td.brief {}
+      > td.brief {
+      }
     }
   }
 }
@@ -453,7 +511,8 @@ table {
         padding-right: 1.5em;
       }
 
-      > td.defn {}
+      > td.defn {
+      }
     }
   }
 }
@@ -477,7 +536,8 @@ table {
     > tr {
       border-top: 1px solid $table-separator-color;
 
-      > td {}
+      > td {
+      }
     }
   }
 }
@@ -525,7 +585,7 @@ table {
     > tr {
       > td {
         padding-right: 0.2em;
-        line-height: 1.0em;
+        line-height: 1em;
         vertical-align: top;
       }
     }
@@ -584,7 +644,8 @@ span.annotation {
         padding-right: 1.5em;
       }
 
-      > td.defn {}
+      > td.defn {
+      }
     }
   }
 }
@@ -679,9 +740,9 @@ span.annotation {
     }
   }
 
-  @include media-query($on-palm) {
-    border-spacing: 1em 0;
-  }
+  // @include media-query($on-palm) {
+  //   border-spacing: 1em 0;
+  // }
 }
 
 .icon-box {
@@ -689,18 +750,16 @@ span.annotation {
   color: $icon-text-color;
   border-radius: 1em;
 
-  @include media-query($on-palm) {
-    border-radius: .3em;
-  }
-
+  // @include media-query($on-palm) {
+  //   border-radius: 0.3em;
+  // }
 
   > .top {
     border-radius: 1em 1em 0 0;
 
-    @include media-query($on-palm) {
-      border-radius: .3em .3em 0 0;
-    }
-
+    // @include media-query($on-palm) {
+    //   border-radius: 0.3em 0.3em 0 0;
+    // }
 
     > .fa {
       display: inline-block;
@@ -710,9 +769,9 @@ span.annotation {
       font-size: 5em;
       vertical-align: middle;
 
-      @include media-query($on-palm) {
-        font-size: 2em;
-      }
+      // @include media-query($on-palm) {
+      //   font-size: 2em;
+      // }
     }
   }
 
@@ -724,14 +783,14 @@ span.annotation {
     border-bottom: 1px solid $icon-border-color;
     font-weight: bold;
     text-align: center;
-    padding-top: .7em;
-    padding-bottom: .7em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
 
-    @include media-query($on-palm) {
-      padding-top: .2em;
-      padding-bottom: .2em;
-      border-radius: 0 0 .3em .3em;
-    }
+    // @include media-query($on-palm) {
+    //   padding-top: 0.2em;
+    //   padding-bottom: 0.2em;
+    //   border-radius: 0 0 0.3em 0.3em;
+    // }
   }
 
   &:hover {

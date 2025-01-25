@@ -1,9 +1,79 @@
+@use "sass:string";
+
+// Variables passed in from root.scss
+$background-color: null !default;
+$base-font-family: null !default;
+$base-font-size: null !default;
+$base-font-weight: null !default;
+$base-line-height: null !default;
+$code-font-family: null !default;
+$content-width: null !default;
+$embedded-code-accent-color: null !default;
+$embedded-code-background-color: null !default;
+$embedded-code-text-color: null !default;
+$footer-background-color: null !default;
+$footer-border-color: null !default;
+$footer-height: null !default;
+$footer-link-color: null !default;
+$footer-text-color: null !default;
+$header-background-color: null !default;
+$header-border-color: null !default;
+$header-font-family: null !default;
+$header-height: null !default;
+$header-title-width: null !default;
+$highlight-accent-color: null !default;
+$highlight-background-color: null !default;
+$hyde-primary: null !default;
+$icon-border-color: null !default;
+$icon-fill-color: null !default;
+$icon-hover-border-color: null !default;
+$icon-hover-primary-color: null !default;
+$icon-hover-secondary-color: null !default;
+$icon-hover-text-color: null !default;
+$icon-primary-color: null !default;
+$icon-secondary-color: null !default;
+$icon-text-color: null !default;
+$inline-code-accent-color: null !default;
+$inline-code-background-color: null !default;
+$inline-code-text-color: null !default;
+$link-color: null !default;
+$on-laptop: null !default;
+$on-palm: null !default;
+$post-meta-text-color: null !default;
+$quote-accent-color: null !default;
+$quote-background-color: null !default;
+$quote-text-color: null !default;
+$site-grey-color-dark: null !default;
+$site-grey-color-light: null !default;
+$site-grey-color: null !default;
+$site-menu-background-color: null !default;
+$site-menu-border-color: null !default;
+$site-menu-fill-color: null !default;
+$site-nav-link-color: null !default;
+$small-font-size: null !default;
+$spacing-unit: null !default;
+$table-separator-color: null !default;
+$text-color: null !default;
+
 /**
  * Reset some basic elements
  */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
   margin: 0;
   padding: 0;
 }
@@ -12,7 +82,8 @@ dl, dd, ol, ul, figure {
   margin: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -20,7 +91,8 @@ html, body {
  * Basic styling
  */
 body {
-  font: #{$base-font-weight} #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: #{$base-font-weight} #{$base-font-size}/#{$base-line-height}
+    $base-font-family;
   color: $text-color;
   background-color: $background-color;
   -webkit-text-size-adjust: 100%;
@@ -31,7 +103,8 @@ body {
   font-kerning: normal;
 }
 
-pre, code {
+pre,
+code {
   // font: $base-font-weight #{$base-font-size}/#{$base-line-height} $code-font-family;
   font-family: $code-font-family;
 }
@@ -39,9 +112,18 @@ pre, code {
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
-h1, h2, h3, h4, h5, h6, blockquote,
-ul, ol, dl, p, figure
-%vertical-rhythm {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+ul,
+ol,
+dl,
+p,
+figure %vertical-rhythm {
   margin-bottom: calc($spacing-unit / 2);
 }
 
@@ -67,7 +149,8 @@ figcaption {
 /**
  * Lists
  */
-ul, ol {
+ul,
+ol {
   margin-left: $spacing-unit;
 }
 
@@ -81,7 +164,12 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $header-font-family;
   font-weight: $base-font-weight;
 }
@@ -143,7 +231,9 @@ pre {
 
 .wrapper {
   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width: unquote("#{$content-width} - #{$spacing-unit} * 2");
+  max-width: string.unquote(
+    "#{$content-width} - #{$spacing-unit} * 2"
+  );
   margin-right: auto;
   margin-left: auto;
   padding-right: $spacing-unit;
@@ -151,12 +241,12 @@ pre {
 
   @extend %clearfix;
 
-  @include media-query($on-laptop) {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    max-width: unquote("#{$content-width} - #{$spacing-unit}");
-    padding-right: calc($spacing-unit / 2);
-    padding-left: calc($spacing-unit / 2);
-  }
+  // @include media-query($on-laptop) {
+  //   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+  //   max-width: unquote("#{$content-width} - #{$spacing-unit}");
+  //   padding-right: calc($spacing-unit / 2);
+  //   padding-left: calc($spacing-unit / 2);
+  // }
 }
 
 /**

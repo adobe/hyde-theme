@@ -21,12 +21,6 @@ layout: default
         which would be a roll-up of documentation already present on this page. Since we only want
         the docs shown once, we stick with the manually-entered brief exclusively.
     {% endcomment %}
-    {% if page.hyde.brief and
-          page.hyde.brief != "__MISSING__" and
-          page.hyde.brief != "__OPTIONAL__" and
-          page.hyde.brief != "__INLINED__" %}
-        {{page.hyde.brief | markdownify}}
-    {% endif %}
 
     {% include overloads.html %}
 

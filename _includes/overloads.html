@@ -7,18 +7,142 @@
       <tr>
         <td>
           {% highlight c++ %}{{ overload.signature_with_names }}{% endhighlight %}
-        </td>
-        {% if overload_count > 1 %}
-            <td><a href="#overload_{{ forloop.index }}">({{ forloop.index }})</a></td>
-        {% endif %}
-        <td>
           {% if overload.annotation %}
             <span class='annotation'>({{overload.annotation | join: ", "}})</span>
           {% endif %}
         </td>
+        {% if overload_count > 1 %}
+            <td><a href="#overload_{{ forloop.index }}">({{ forloop.index }})</a></td>
+        {% endif %}
       </tr>
   {% endfor %}
   </table>
+
+  {% if page.hyde.brief and
+        page.hyde.brief != "__MISSING__" and
+        page.hyde.brief != "__OPTIONAL__" and
+        page.hyde.brief != "__INLINED__" %}
+      {{page.hyde.brief | markdownify}}
+  {% endif %}
+
+  {% for entity in page.hyde.overloads %}
+    {% assign overload = entity[1] %}
+    {% if overload_count > 1 %}
+      {% if overload.inline.brief %}
+        <div id="overload_{{ forloop.index }}">{{ forloop.index }})
+            {{overload.inline.brief | join: "<br/>" | markdownify }}
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% for entity in page.hyde.overloads %}
+    {% assign overload = entity[1] %}
+    {% comment %}
+      `brief` isn't required for specific functions, but _is_ required for the top-level file that
+      documents all the function's overloads. Thus a developer may define a `brief` for an
+      overload though it is not required for `hyde`. Since it is the brief it should precede any
+      enusuing descriptions.
+    {% endcomment %}
+
+    {% if overload.inline.description %}
+      {{overload.inline.description | join: "<br/>" | markdownify }}
+    {% endif %}
+
+    {% if overload.description and
+          overload.description != "__INLINED__"  and
+          overload.description != "__OPTIONAL__" %}
+      {{overload.description | markdownify}}
+    {% endif %}
+
+    {% if overload.inline.pre %}
+      <h5>Preconditions</h5>
+      {{overload.inline.pre | markdownify}}
+    {% endif %}
+
+    {% if overload.arguments %}
+      <h5>Parameters</h5>
+      <table class='declaration-table'>
+        {% for arg in overload.arguments %}
+          <tr>
+              <td style="padding-right: 1em">
+                  {% if overload.inline.arguments[arg.name].direction %}
+                      <span class="annotation">{{overload.inline.arguments[arg.name].direction}}</span>
+                  {% else %}
+                      &nbsp;
+                  {% endif %}
+              </td>
+              <td style="white-space: nowrap; padding-right: 1em">
+                  {% highlight c++ %}{{arg.type}}{% endhighlight %}
+              </td>
+              <td style="padding-right: 1em">
+                  {% if (arg.name != "") and (arg.unnamed == false) %}
+                      {% highlight c++ %}{{arg.name}}{% endhighlight %}
+                  {% else %}
+                      <i>unnamed</i>
+                  {% endif %}
+              </td>
+              <td width='100%'>
+                  {% if arg.description and (arg.description != "__OPTIONAL__") %}
+                      {{arg.description | markdownify}}
+                  {% else if arg.name and overload.inline.arguments[arg.name].description %}
+                      {{overload.inline.arguments[arg.name].description | markdownify}}
+                  {% endif %}
+              </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+    {% if (overload.return and
+          (overload.return != "__OPTIONAL__")) or
+          overload.inline.return %}
+      <h5>Returns</h5>
+    {%endif%}
+    {% if overload.return and (overload.return != "__OPTIONAL__") %}
+      {{overload.return | markdownify}}
+    {% endif %}
+    {% if overload.inline.return %}
+      {{overload.inline.return | markdownify}}
+    {% endif %}
+
+    {% if overload.inline.post %}
+      <h5>Postconditions</h5>
+      {{overload.inline.post | markdownify}}
+    {% endif %}
+
+    {% if overload.inline.throw %}
+      <h5>Exceptions</h5>
+      {{overload.inline.throw | markdownify}}
+    {% endif %}
+
+    {% if overload.inline.todo %}
+      <h5>To Do</h5>
+      {{overload.inline.todo | markdownify}}
+    {% endif %}
+
+    {% if overload.inline.warning %}
+      <h5>Warning</h5>
+      {{overload.inline.warning | markdownify}}
+    {% endif %}
+
+    {% for entry in overload.inline %}
+      {% if entry[0] == "owner" or
+            entry[0] == "brief" or
+            entry[0] == "description" or
+            entry[0] == "pre" or
+            entry[0] == "post" or
+            entry[0] == "arguments" or
+            entry[0] == "return" or
+            entry[0] == "throw" or
+            entry[0] == "todo" or
+            entry[0] == "warning" %}
+          {% continue %}
+      {% endif %}
+      <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
+      {{entry[1] | markdownify }}
+    {% endfor %}
+  {% endfor %}
 
   {% if page.hyde.inline.description %}
     {{ page.hyde.inline.description | markdownify }}
@@ -27,122 +151,4 @@
   {% if page.hyde.description %}
     {{ page.hyde.description | markdownify }}
   {% endif %}
-
-  {% for entity in page.hyde.overloads %}
-    {% assign overload = entity[1] %}
-    {% if overload_count > 1 %}
-      <h4 id="overload_{{ forloop.index }}">({{ forloop.index }}) {% highlight c++ %}{{ overload.signature_with_names }}{%endhighlight%}</h4>
-
-      {% if overload.annotation %}
-        <span class='annotation'>({{overload.annotation | join: ", "}})</span>
-      {% endif %}
-    {% endif %}
-      {% comment %}
-        `brief` isn't required for specific functions, but _is_ required for the top-level file that
-        documents all the function's overloads. Thus a developer may define a `brief` for an
-        overload though it is not required for `hyde`. Since it is the brief it should precede any
-        enusuing descriptions.
-      {% endcomment %}
-      {% if overload.inline.brief %}
-        {{overload.inline.brief | join: "<br/>" | markdownify }}
-      {% endif %}
-
-      {% if overload.inline.description %}
-        {{overload.inline.description | join: "<br/>" | markdownify }}
-      {% endif %}
-
-      {% if overload.description and
-            overload.description != "__INLINED__"  and
-            overload.description != "__OPTIONAL__" %}
-        {{overload.description | markdownify}}
-      {% endif %}
-
-      {% if overload.inline.pre %}
-        <h5>Preconditions</h5>
-        {{overload.inline.pre | markdownify}}
-      {% endif %}
-
-      {% if overload.arguments %}
-        <h5>Parameters</h5>
-        <table class='declaration-table'>
-          {% for arg in overload.arguments %}
-            <tr>
-                <td style="padding-right: 1em">
-                    {% if overload.inline.arguments[arg.name].direction %}
-                        <span class="annotation">{{overload.inline.arguments[arg.name].direction}}</span>
-                    {% else %}
-                        &nbsp;
-                    {% endif %}
-                </td>
-                <td style="white-space: nowrap; padding-right: 1em">
-                    {% highlight c++ %}{{arg.type}}{% endhighlight %}
-                </td>
-                <td style="padding-right: 1em">
-                    {% if (arg.name != "") and (arg.unnamed == false) %}
-                        {% highlight c++ %}{{arg.name}}{% endhighlight %}
-                    {% else %}
-                        <i>unnamed</i>
-                    {% endif %}
-                </td>
-                <td width='100%'>
-                    {% if arg.description and (arg.description != "__OPTIONAL__") %}
-                        {{arg.description | markdownify}}
-                    {% else if arg.name and overload.inline.arguments[arg.name].description %}
-                        {{overload.inline.arguments[arg.name].description | markdownify}}
-                    {% endif %}
-                </td>
-            </tr>
-          {% endfor %}
-        </table>
-      {% endif %}
-
-      {% if (overload.return and
-            (overload.return != "__OPTIONAL__")) or
-            overload.inline.return %}
-        <h5>Returns</h5>
-      {%endif%}
-      {% if overload.return and (overload.return != "__OPTIONAL__") %}
-        {{overload.return | markdownify}}
-      {% endif %}
-      {% if overload.inline.return %}
-        {{overload.inline.return | markdownify}}
-      {% endif %}
-
-      {% if overload.inline.post %}
-        <h5>Postconditions</h5>
-        {{overload.inline.post | markdownify}}
-      {% endif %}
-
-      {% if overload.inline.throw %}
-        <h5>Exceptions</h5>
-        {{overload.inline.throw | markdownify}}
-      {% endif %}
-
-      {% if overload.inline.todo %}
-        <h5>To Do</h5>
-        {{overload.inline.todo | markdownify}}
-      {% endif %}
-
-      {% if overload.inline.warning %}
-        <h5>Warning</h5>
-        {{overload.inline.warning | markdownify}}
-      {% endif %}
-
-      {% for entry in overload.inline %}
-        {% if entry[0] == "owner" or
-              entry[0] == "brief" or
-              entry[0] == "description" or
-              entry[0] == "pre" or
-              entry[0] == "post" or
-              entry[0] == "arguments" or
-              entry[0] == "return" or
-              entry[0] == "throw" or
-              entry[0] == "todo" or
-              entry[0] == "warning" %}
-            {% continue %}
-        {% endif %}
-        <h5>{{entry[0]}} <span class='annotation'>(additional inline)</span></h5>
-        {{entry[1] | markdownify }}
-      {% endfor %}
-  {% endfor %}
 {% endif %}
