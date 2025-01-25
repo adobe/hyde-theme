@@ -4,10 +4,90 @@
 @charset "utf-8";
 
 @use "sass:meta";
+@use "sass:map";
+@use "sass:color";
+@use "overrides" as o;
+@use "overrides-light" as l;
+@use "main-light" as m;
 
-@include meta.load-css("base");
-@include meta.load-css("layout", $with: (
-    {% if site.adobe_hyde.header_image %}
-    "header-image": url({{ site.adobe_hyde.header_image | prepend: site.baseurl }})
-    {% endif %}
+
+@function get-var-default($name, $default) {
+  @if meta.global-variable-exists($name, "l") {
+    @return map.get(meta.module-variables("l"), $name);
+  } @else if meta.global-variable-exists($name, "o") {
+    @return map.get(meta.module-variables("o"), $name);
+  } @else {
+    @return $default;
+  }
+}
+
+@function get-var($name) {
+   @return get-var-default($name,  map.get(meta.module-variables("m"), $name));
+}
+
+$theme-vars: (
+    "background-color": get-var("background-color"),
+    "base-font-family": get-var("base-font-family"),
+    "base-font-size": get-var("base-font-size"),
+    "base-font-weight": get-var("base-font-weight"),
+    "base-line-height": get-var("base-line-height"),
+    "code-font-family": get-var("code-font-family"),
+    "content-width": get-var("content-width"),
+    "footer-background-color": get-var("footer-background-color"),
+    "footer-border-color": get-var("footer-border-color"),
+    "footer-height": get-var("footer-height"),
+    "header-background-color": get-var("header-background-color"),
+    "header-border-color": get-var("header-border-color"),
+    "header-font-family": get-var("header-font-family"),
+    "header-title-width": get-var("header-title-width"),
+    "highlight-accent-color": get-var("highlight-accent-color"),
+    "highlight-background-color": get-var("highlight-background-color"),
+    "hyde-primary": get-var("hyde-primary"),
+    "icon-hover-secondary-color": get-var("icon-hover-secondary-color"),
+    "icon-secondary-color": get-var("icon-secondary-color"),
+    "on-laptop": get-var("on-laptop"),
+    "on-palm": get-var("on-palm"),
+    "site-grey-color": get-var("site-grey-color"),
+    "site-menu-background-color": get-var("site-menu-background-color"),
+    "site-menu-border-color": get-var("site-menu-border-color"),
+    "spacing-unit": get-var("spacing-unit"),
+    "text-color": get-var("text-color"),
+
+    // Dependent variables
+    "embedded-code-accent-color": get-var-default("embedded-code-accent-color", get-var("highlight-background-color")),
+    "embedded-code-background-color": get-var-default("embedded-code-background-color", get-var("highlight-background-color")),
+    "embedded-code-text-color": get-var-default("embedded-code-text-color", get-var("text-color")),
+    "footer-link-color": get-var-default("footer-link-color", get-var("site-grey-color")),
+    "footer-text-color": get-var-default("footer-text-color", get-var("site-grey-color")),
+    "header-height": get-var-default("header-height", get-var("base-font-size") * 2),
+    "icon-border-color": get-var-default("icon-border-color", get-var("site-grey-color")),
+    "icon-fill-color": get-var-default("icon-fill-color", get-var("hyde-primary")),
+    "icon-hover-border-color": get-var-default("icon-hover-border-color", get-var("site-grey-color")),
+    "icon-hover-primary-color": get-var-default("icon-hover-primary-color", get-var("site-grey-color")),
+    "icon-hover-text-color": get-var-default("icon-hover-text-color", get-var("site-grey-color")),
+    "icon-primary-color": get-var-default("icon-primary-color", get-var("hyde-primary")),
+    "icon-text-color": get-var-default("icon-text-color", get-var("hyde-primary")),
+    "inline-code-accent-color": get-var-default("inline-code-accent-color", get-var("highlight-background-color")),
+    "inline-code-background-color": get-var-default("inline-code-background-color", get-var("highlight-background-color")),
+    "inline-code-text-color": get-var-default("inline-code-text-color", get-var("text-color")),
+    "link-color": get-var-default("link-color", get-var("hyde-primary")),
+    "post-meta-text-color": get-var-default("post-meta-text-color", get-var("site-grey-color")),
+    "quote-accent-color": get-var-default("quote-accent-color", get-var("highlight-accent-color")),
+    "quote-background-color": get-var-default("quote-background-color", get-var("highlight-background-color")),
+    "quote-text-color": get-var-default("quote-text-color", get-var("text-color")),
+    "site-grey-color-dark": get-var-default("site-grey-color-dark", color.adjust(get-var("site-grey-color"), $lightness: -25%)),
+    "site-grey-color-light": get-var-default("site-grey-color-light", color.adjust(get-var("site-grey-color"), $lightness: 35%)),
+    "site-menu-fill-color": get-var-default("site-menu-fill-color", get-var("site-grey-color-dark")),
+    "site-nav-link-color": get-var-default("site-nav-link-color", get-var("hyde-primary")),
+    "small-font-size": get-var-default("small-font-size", get-var("base-font-size") * 0.875),
+    "table-separator-color": get-var-default("table-separator-color", get-var("site-grey-color-light"))
+);
+
+@include meta.load-css("base", $with: $theme-vars);
+
+@include meta.load-css("layout", $with: map.merge(
+  {% if site.adobe_hyde.header_image %}
+  ("header-image": url({{ site.adobe_hyde.header_image | prepend: site.baseurl }})),
+  {% endif %}
+  $theme-vars
 ));
